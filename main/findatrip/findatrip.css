@@ -254,9 +254,10 @@ body .desc {
     align-items: center;
     justify-content: center;
     gap: 12px;
-        margin: 2rem auto;
+    margin: 2rem auto;
         max-width: 900px;
         flex-wrap: wrap;
+}
 
 
 

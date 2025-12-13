@@ -20,16 +20,21 @@
   </div>
 
     
-    <div class="filters">
-          
-          <label style="margin-left:10px;">Destination</label>
-          <input id="filterDestination" type="text" placeholder=" Paris" type="date" >
-          <label for="start">Start date</label>
-          <input   id="start" type="date" >
-          <label for="end">End date</label>
-          <input  id="end" type="date" >
-          <button id="searchBtn" class="searchBtn">Search</button>
-    </div>     
+<div class="filters">
+    <form action="searchresults.jsp" method="get">
+        <label style="margin-left:10px;">Destination</label>
+        <input name="destination" type="text" placeholder="Paris">
+
+        <label for="start">Start date</label>
+        <input name="start" type="date">
+
+        <label for="end">End date</label>
+        <input name="end" type="date">
+
+        <button type="submit" class="searchBtn">Search</button>
+    </form>
+</div>
+ 
    
 
     <!-- Popular Destinations Section -->
@@ -117,36 +122,7 @@
         <span class="stat-label">Countries</span>
       </div>
     </section>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const searchBtn = document.getElementById("searchBtn");
-        const filterDestination = document.getElementById("filterDestination");
-        const start = document.getElementById("start");
-        const end = document.getElementById("end");
 
-        searchBtn.addEventListener("click", () => {
-          const destination = filterDestination.value.trim();
-          const startDate = start.value;
-          const endDate = end.value;
-
-          if(destination || startDate || endDate) {
-            const params = new URLSearchParams();
-            if(destination) params.append("destination", destination);
-            if(startDate) params.append("start", startDate);
-            if(endDate) params.append("end", endDate);
-
-            window.location.href = `searchresults.html?${params.toString()}`;
-          }
-  });
-
-  [filterDestination, start, end].forEach(input => {
-    input.addEventListener("keypress", (e) => {
-      if(e.key === "Enter") searchBtn.click();
-    });
-  });
-});
-
-</script>
     <footer>
         <jsp:include page="../home/footer.jsp" />
       
