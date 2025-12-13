@@ -63,15 +63,27 @@ const trips = [
         img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80"
     },
     {
-        title: "Hiking in Norway",
-        destination: "Bergen, Norway",
-        purpose: "Adventure",
-        budget: "650€",
-        startDate: "2026-05-10",
-        endDate: "2026-05-14",
-        details: "Experience the breathtaking natural beauty of Norway with an adventurous hiking trip around Bergen.",
-        createdBy: "adventuretoursco.",
-        participants: 8,
+        title: "French Riviera Escape",
+        destination: "Nice, France",
+        purpose: "Relaxation",
+        budget: "550€",
+        startDate: "2026-07-10",
+        endDate: "2026-07-15",
+        details: "Enjoy sun, sea, and luxury along the beautiful French Riviera.",
+        createdBy: "sunnytravels",
+        participants: 4,
+        img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        title: "Wine Tour in Bordeaux",
+        destination: "Bordeaux, France",
+        purpose: "Cultural",
+        budget: "600€",
+        startDate: "2026-09-01",
+        endDate: "2026-09-07",
+        details: "Taste world-class wines and explore the vineyards of Bordeaux.",
+        createdBy: "winetours",
+        participants: 6,
         img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
     },
     {
@@ -84,8 +96,71 @@ const trips = [
         details: "Dive into the rich history and vibrant culture of Rome with this immersive cultural tour.",
         createdBy: "mirandacooper",
         participants: 12,
-        img: "https://images.unsplash.com/photo-1509057199576-632a47484ece?auto=format&fit=crop&w=600&q=80"
+        img: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80"
+    },
+    
+    {
+        title: "Florence Art & Culture",
+        destination: "Florence, Italy",
+        purpose: "Cultural",
+        budget: "400€",
+        startDate: "2026-09-12",
+        endDate: "2026-09-18",
+        details: "Visit museums, galleries, and historic sites in the birthplace of the Renaissance.",
+        createdBy: "artlover",
+        participants: 8,
+        img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80"
+    },
+
+    {
+        title: "Barcelona Beach Break",
+        destination: "Barcelona, Spain",
+        purpose: "Beach",
+        budget: "450€",
+        startDate: "2026-06-10",
+        endDate: "2026-06-15",
+        details: "Relax on Barcelona’s beautiful beaches and explore its amazing architecture and culture.",
+        createdBy: "sunseatravel",
+        participants: 7,
+        img: "https://images.unsplash.com/photo-1543785734-4b6e564642f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        title: "Madrid City Exploration",
+        destination: "Madrid, Spain",
+        purpose: "Urban Exploration",
+        budget: "400€",
+        startDate: "2026-07-15",
+        endDate: "2026-07-20",
+        details: "Discover the vibrant city life, museums, and nightlife of Spain’s capital.",
+        createdBy: "citytours",
+        participants: 5,
+        img: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        title: "Seville Cultural Trip",
+        destination: "Seville, Spain",
+        purpose: "Cultural",
+        budget: "350€",
+        startDate: "2026-08-01",
+        endDate: "2026-08-07",
+        details: "Explore the historic landmarks, flamenco culture, and local cuisine of Seville.",
+        createdBy: "maria_garcia",
+        participants: 6,
+        img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+        title: "Hiking in Norway",
+        destination: "Bergen, Norway",
+        purpose: "Adventure",
+        budget: "650€",
+        startDate: "2026-05-10",
+        endDate: "2026-05-14",
+        details: "Experience the breathtaking natural beauty of Norway with an adventurous hiking trip around Bergen.",
+        createdBy: "jakeperalta",
+        participants: 8,
+        img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
     }
+    
 ];
 
 const resultsGrid = document.getElementById("resultsGrid");
@@ -130,8 +205,9 @@ filteredTrips.forEach(trip => {
             `&end=${encodeURIComponent(trip.endDate)}` +
             `&details=${encodeURIComponent(trip.details)}` +
             `&createdBy=${encodeURIComponent(trip.createdBy)}`+
-            `&participants=${encodeURIComponent(trip.participants)}`
-            ;
+            `&participants=${encodeURIComponent(trip.participants)}`+
+            `&img=${encodeURIComponent(trip.img)}`;
+
         window.location.href = url;
     });
 });

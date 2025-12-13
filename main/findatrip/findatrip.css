@@ -257,21 +257,25 @@ body .desc {
         margin: 2rem auto;
         max-width: 900px;
         flex-wrap: wrap;
-}
+
 
 
 .filters-compact label {
-    margin: 0;                /* μηδενικά περιθώρια */
-    font-size: 14px;
+    margin: 0;
+    font-size: 11px;
     color: #546D79;
+    text-align: center;
 }
+
 .filters input {
     padding: 8px;
     border-radius: 6px;
     border: 1px solid #546D79;
-    width: 15%;
+    width: 100px;
 }
-.desc p{
+
+
+.desc p {
     text-align: center;
     margin: 20px;
     font-weight: bold;            
@@ -279,20 +283,20 @@ body .desc {
     color: #3e3d3d;
     font-size: 1.1rem;
     line-height: 1.5;
-  
 }
-.searchBtn{
-            margin: 5px;       
-            padding: 5px 10px;     
-            background-color: #43555f;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            align-items: left;
-            margin-left: 20px;
-            margin-right:2200px ;
-}
-.searchBtn :hover { 
-  background-color:  #43555f; }
 
+.searchBtn {
+    padding: 8px 16px;
+    background-color: #43555f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s ease-in-out;
+    display: inline-block;
+}
+
+.searchBtn:hover {
+    background-color: #2f3d45; 
+}
