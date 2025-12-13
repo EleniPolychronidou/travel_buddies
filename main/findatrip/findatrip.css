@@ -252,12 +252,13 @@ body .desc {
 .filters {
     display: flex;
     align-items: center;
-    gap: 5px;     
     justify-content: center;
-    margin-left:800px;
-    margin-right:800px;
-
+    gap: 12px;
+        margin: 2rem auto;
+        max-width: 900px;
+        flex-wrap: wrap;
 }
+
 
 .filters-compact label {
     margin: 0;                /* μηδενικά περιθώρια */
@@ -272,10 +273,10 @@ body .desc {
 }
 .desc p{
     text-align: center;
-    margin: 80px;
+    margin: 20px;
     font-weight: bold;            
     letter-spacing: 0.2px;
-    color: #6d6c6c;
+    color: #3e3d3d;
     font-size: 1.1rem;
     line-height: 1.5;
   

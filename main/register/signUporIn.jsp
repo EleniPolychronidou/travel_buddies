@@ -1,0 +1,372 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TravelBuddy - Σύνδεση / Εγγραφή</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: url('mountain.jpg') center/cover no-repeat fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Open Sans", sans-serif;
+      color: #312D2B;
+      padding: 20px;
+    }
+
+    .container-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .left-panel {
+      flex: 1;
+      min-width: 300px;
+      background-color: rgba(84, 109, 121, 0.9);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px;
+    }
+
+    .left-panel h1 {
+      font-family: "Albert Sans", sans-serif;
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .left-panel p {
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 400px;
+      color: #f2f2f2;
+    }
+
+    
+      .auth-container {
+      flex: 1;
+      min-width: 350px;
+      padding: 40px 20px;
+      text-align: center;
+      display: flex;          
+      flex-direction: column; 
+      gap: 25px;             
+      box-sizing: border-box;}
+      
+
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px; 
+    }
+    .nav-tabs .nav-link {
+      color: #546D79;
+      border: none;
+      font-weight: 600;
+    }
+
+    .nav-tabs .nav-link.active {
+      background-color: #546D79;
+      color: #fff;
+      border-radius: 8px;
+    }
+
+    .form-label {
+      font-weight: 500;
+      color: #312D2B;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      transition: 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: #546D79;
+      box-shadow: 0 0 4px rgba(84, 109, 121, 0.4);
+    }
+
+    .btn-primary, .btn-success {
+      background-color: #546D79;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover, .btn-success:hover {
+      background-color: #475b64;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .required {
+      color: #d00;
+    }
+
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .interest-option {
+      background-color: #e9ecef;
+      color: #312D2B;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      user-select: none;
+    }
+
+    .interest-option.active {
+      background-color: #546D79;
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .container-wrapper {
+        flex-direction: column;
+      }
+
+      .left-panel {
+        align-items: center;
+        text-align: center;
+      }
+
+      .left-panel p {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+		<div class="container theme-showcase" role="main">			            
+            <div class="row">		
+				<div class="col-xs-12">
+<%
+					if (request.getAttribute("errorMessage") != null) {
+%>
+						<div class="alert alert-danger">
+							<%=(String)request.getAttribute("errorMessage") %>
+						</div><%
+					}
+%>	
+
+<%
+					if (request.getAttribute("successMessage") != null) {
+%>
+						<div class="alert alert-success">
+							<%=(String)request.getAttribute("successMessage") %>
+						</div>
+<%
+					}
+%>
+
+
+    <!--Είναι φτωχικό αλλά μου έφαγαν την ζωή και όλες τις δωρεάν προσπάθειες του τσατ αυτά τα κουμπιά-->
+  <div class="container-wrapper">
+    <div class="left-panel">
+      <h1>Travel Buddy</h1>
+      <p>Join our community and meet new people to travel with!</p>
+      <p>Remember: It's always better with more people!</p>
+    </div>
+
+    <div class="auth-container">
+      <ul class="nav nav-tabs justify-content-center mb-3" id="authTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">Sign In</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" type="button" role="tab">Register</button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="authTabsContent">
+        <!-- LOGIN -->
+        <div class="tab-pane fade show active" id="login" role="tabpanel">
+          <form id="loginForm" method="post" action="/login" novalidate>
+            <div class="mb-3 text-start">
+              <label for="loginEmail" class="form-label">Email <span class="required">*</span></label>
+              <input type="email" class="form-control" id="loginEmail" name="email" required>
+            </div>
+
+            <div class="mb-3 text-start">
+              <label for="loginPassword" class="form-label">Password <span class="required">*</span></label>
+              <input type="password" class="form-control" id="loginPassword" name="password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+          </form>
+        </div>
+
+        <!-- SIGNUP -->
+        <div class="tab-pane fade" id="signup" role="tabpanel">
+          <form id="signupForm" method="post" action="/signup" novalidate>
+             <div class="mb-3 text-start">
+              <label class="form-label">Register as <span class="required">*</span></label>
+              <select id="userType" name="userType" class="form-select" required>
+                <option value="" selected disabled>Choose type</option>
+                <option value="traveler">Traveler</option>
+                <option value="agency">Agency</option>
+              </select>
+            </div>
+             <div class="mb-3 text-start">
+              <label for="signupEmail" class="form-label">Email <span class="required">*</span></label>
+              <input type="email" class="form-control" id="signupEmail" name="email" required>
+            </div>
+
+            <div id="travelerFields" class="traveler-fields" style="display:none;">
+            <div class="mb-3 text-start">
+              <label for="name" class="form-label">First Name <span class="required">*</span></label>
+              <input type="text" class="form-control" id="name" name="firstname" required>
+            </div>
+            <div class="mb-3 text-start">
+              <label for="Surname" class="form-label">Last Name <span class="required">*</span></label>
+              <input type="text" class="form-control" id="name" name="lastname" required>
+            </div>
+            <div class="mb-3 text-start">
+              <label for="birthDate" class="form-label">Date of Birth <span class="required">*</span></label>
+              <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+            </div>
+            
+            <div class="mb-3 text-start">
+              <label for="gender" class="form-label">Gender <span class="required">*</span></label>
+              <select id="gender" name="gender" class="form-select" required>
+                <option value="" disabled selected>Select your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+                <option value="prefer_not">Prefer not to say</option>
+                </select>
+            </div>
+
+            <!-- Ενδιαφέροντα (με click επιλογές) -->
+            <div class="mb-3 text-start">
+              <label class="form-label">Interests</label>
+              <div class="interests-list">
+                <div class="interest-option">Fitness &amp; Sports</div>
+                <div class="interest-option">Dancing</div>
+                <div class="interest-option">History</div>
+                <div class="interest-option">Movies</div>
+                <div class="interest-option">Coding</div>
+                <div class="interest-option">Music</div>
+                <div class="interest-option">Theater</div>
+                <div class="interest-option">Foodie</div>
+                <div class="interest-option">Culture</div>
+                <div class="interest-option">Parties</div>
+                <div class="interest-option">Reading</div>
+                <div class="interest-option">Cars</div>
+                <div class="interest-option">Fashion</div>
+              </div>
+              <input type="hidden" id="interestsInput" name="interests">
+            </div>
+            </div>
+            <div id="agencyFields" class="agency-fields" style="display:none;">
+              <div class="mb-3 text-start">
+                <label for="businessName" class="form-label">Business Name <span class="required">*</span></label>
+                <input type="text" class="form-control" id="businessName" name="businessName">
+              </div>
+
+              <div class="mb-3 text-start">
+                <label for="address" class="form-label">Address <span class="required">*</span></label>
+                <input type="text" class="form-control" id="address" name="address">
+              </div>
+
+              <div class="mb-3 text-start">
+                <label for="phone" class="form-label">Phone <span class="required">*</span></label>
+                <input type="tel" class="form-control" id="phone" name="phone">
+              </div>
+</div>
+              <div class="mb-3 text-start">
+              <label for="signupPassword" class="form-label">Password <span class="required">*</span></label>
+              <input type="password" class="form-control" id="signupPassword" name="password" required minlength="6">
+            </div>
+
+            <div class="mb-3 text-start">
+              <label for="signupPasswordConfirm" class="form-label">Password Confirmation <span class="required">*</span></label>
+              <input type="password" class="form-control" id="signupPasswordConfirm" required minlength="6">
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Sign Up</button>
+</div>
+            <div class="mt-4 text-muted small">
+              Already a member?
+              <a href="#" class="link-primary" onclick="document.querySelector('#login-tab').click(); return false;">Sign In</a>.
+            </div>
+           
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("birthDate").setAttribute("max", today);
+  </script>
+
+  <script>
+    // επιλογή ενδιαφερόντων με ένα κλικ
+    const options = document.querySelectorAll('.interest-option');
+    const interestsInput = document.getElementById('interestsInput');
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        opt.classList.toggle('active');
+        const selected = [...document.querySelectorAll('.interest-option.active')]
+          .map(el => el.textContent.trim());
+        interestsInput.value = selected.join(', ');
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    
+
+    const userTypeSelect = document.getElementById('userType');
+    const travelerFields = document.getElementById('travelerFields');
+    const agencyFields = document.getElementById('agencyFields');
+
+
+      userTypeSelect.addEventListener('change', () => {
+    if(userTypeSelect.value === 'traveler'){
+      travelerFields.style.display = 'block';
+      agencyFields.style.display = 'none';
+    } else if(userTypeSelect.value === 'agency'){
+      agencyFields.style.display = 'block';
+      travelerFields.style.display = 'none';
+    }
+  });
+
+  </script>
+
+</body>
+</html>
