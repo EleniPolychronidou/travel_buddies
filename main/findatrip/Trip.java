@@ -35,6 +35,14 @@ public class Trip {
         this(0, title, destination, startDate, endDate, description, avgCost);
     }
 
+    public int geTripId() {
+        return tripId;
+    }
+
+    public void setTripId(int tripId) {
+        this.tripId = tripId;
+    }
+
     public String getTitle() {
         return title;
     }
