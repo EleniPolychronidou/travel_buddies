@@ -11,45 +11,61 @@ public class TripService {
         List<Trip> trips = new ArrayList<>();
         DB db = new DB();
         Connection con = null;
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
         String sql = "SELECT * FROM trips "
-                + "WHERE (? IS NULL OR destination LIKE ?) "
-                + "AND (? IS NULL OR start_date >= ?) "
-                + "AND (? IS NULL OR end_date <= ?);";
+                   + "WHERE destination LIKE ? "
+                   + "AND (? IS NULL OR start_date >= ?) "
+                   + "AND (? IS NULL OR end_date <= ?);";
 
         try {
             con = db.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt = con.prepareStatement(sql);
 
-            stmt.setString(1, destination);
-            stmt.setString(2, "%" + (destination != null ? destination : "") + "%");
-            stmt.setString(3, start);
-            stmt.setString(4, start);
-            stmt.setString(5, end);
-            stmt.setString(6, end);
+            if (destination == null || destination.trim().isEmpty()) {
+                stmt.setString(1, "%"); 
+            } else {
+                stmt.setString(1, "%" + destination + "%");
+            }
 
-            ResultSet rs = stmt.executeQuery();
+            if (start == null || start.trim().isEmpty()) {
+                stmt.setString(2, null);
+                stmt.setString(3, null);
+            } else {
+                stmt.setString(2, start);
+                stmt.setString(3, start);
+            }
+
+            if (end == null || end.trim().isEmpty()) {
+                stmt.setString(4, null);
+                stmt.setString(5, null);
+            } else {
+                stmt.setString(4, end);
+                stmt.setString(5, end);
+            }
+
+            rs = stmt.executeQuery();
+
             while (rs.next()) {
                 trips.add(new Trip(
                         rs.getInt("id"),
+                        rs.getString("title"),
                         rs.getString("destination"),
-                        rs.getString("start_date"),
-                        rs.getString("end_date"),
-                        rs.getString("description")
+                        rs.getInt("start_date"),
+                        rs.getInt("end_date"),
+                        rs.getString("description"),
+                        rs.getDouble("cost") 
                 ));
             }
 
-            rs.close();
-            stmt.close();
-            db.close();
             return trips;
 
         } catch (Exception e) {
-            throw e;
+            throw new Exception("Error searching trips: " + e.getMessage());
         } finally {
-            try {
-                db.close();
-            } catch (Exception e) {
-            }
+            if (rs != null) try { rs.close(); } catch (Exception e) {}
+            if (stmt != null) try { stmt.close(); } catch (Exception e) {}
+            if (db != null) try { db.close(); } catch (Exception e) {}
         }
     }
 }
