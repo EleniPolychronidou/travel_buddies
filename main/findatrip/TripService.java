@@ -9,7 +9,7 @@ public class TripService {
 
     public List<Trip> searchTrips(String destination, String start, String end) throws Exception {
         List<Trip> trips = new ArrayList<>();
-        DB db = new DB();
+        DB db = new DB(); //Θα δουλέψει στον server όπου θα ανεβάσουμε και το DB.java αρχείο
         Connection con = null;
         ResultSet rs = null;
         PreparedStatement stmt = null;
