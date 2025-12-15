@@ -1,11 +1,18 @@
 package main;
 
 public class User {
+
+    // Ορίζω το Enum
+    public enum Role {
+        TRAVELER,
+        AGENCY
+    }
     
     private int userId;
     private String name;
 	private String email;
 	private int password;
+    private Role role;
 	private String interests;
 
     /**
@@ -16,6 +23,7 @@ public class User {
      * @param name
      * @param email
      * @param password
+     * @param role
      * @param interests
      * Θεωρώ το budget δεν χρειάζεται λόγω διαφορετικών σκοπών σε κάθε ταξίδι
      */
@@ -58,6 +66,19 @@ public class User {
 
     public void setPassword(int password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+    
+    // Βοηθητική μέθοδος για να επιστρέφει το enum ως String (π.χ. για τη βάση δεδομένων)
+    public String getRoleString() {
+        return role.toString(); 
     }
 
     public String getInterests() {
