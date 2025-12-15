@@ -1,4 +1,5 @@
-package main.register;
+package main;
+import java.sql.Date;
 
 public class Traveler {
     private int travelerId;
@@ -6,9 +7,18 @@ public class Traveler {
     private String gender;
     private Date birthDate;
     private String interests;
+    private double budget; //Νιώθω ότι δεν χρειάζεται
 
-    public Traveler() {
-    }
+    /**
+     * Full constuctor
+     *   
+     * @param travelerId
+     * @param userId
+     * @param gender
+     * @param birthDate
+     * @param interests
+     * @param budget
+     */
 
     public Traveler(int userId, String gender, Date birthDate, String interests) {
         this.userId = userId;
@@ -18,8 +28,8 @@ public class Traveler {
 
     }
 
-    public Traveler (int travelerId, int userId, String gender, Date birthDate, String interests){
-			this.travelerId=travelerId
+    public Traveler (int travelerId, int userId, String gender, Date birthDate, String interests, double budget){
+			this.travelerId = travelerId;
 			this.userId = userId;
 			this.gender = gender;
 			this.birthDate = birthDate;
@@ -32,7 +42,7 @@ public class Traveler {
     }
 
 public void setTravelerId(int travelerId){
-	this.travelerId;
+	this.travelerId = travelerId;
 }
 
     public int getUserId() {
@@ -63,9 +73,11 @@ public void setTravelerId(int travelerId){
         return interests;
     }
 
-    public void setInterests() {
+    public void setInterests(String interests) {
         this.interests = interests;
     }
+
+    //Πρέπει να βάλεις getter και setter για το budget αν το κρατήσουμε
 
     @Override
     public String toString() {
