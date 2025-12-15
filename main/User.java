@@ -13,18 +13,15 @@ public class User {
 	private String email;
 	private int password;
     private Role role;
-	private String interests;
 
     /**
      * Full constuctor
      *   
      * @param title
-     * @param destination
      * @param name
      * @param email
      * @param password
      * @param role
-     * @param interests
      * Θεωρώ το budget δεν χρειάζεται λόγω διαφορετικών σκοπών σε κάθε ταξίδι
      */
     public User(int userId, String name, String email, int password, String interests) {
@@ -33,7 +30,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.interests = interests;
     }
 
     public int getUserId() {
@@ -79,15 +75,6 @@ public class User {
     // Βοηθητική μέθοδος για να επιστρέφει το enum ως String (π.χ. για τη βάση δεδομένων)
     public String getRoleString() {
         return role.toString(); 
-    }
-
-    public String getInterests() {
-        return interests;
-    }
-
-    public void setInterests(String interests) {
-        this.interests = interests;
-    }
-    
+    } 
 
 }
