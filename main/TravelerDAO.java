@@ -27,10 +27,10 @@ public boolean insertTraveler (Traveler traveler) {
 
         preparedStatement.setInt(1, traveler.getTravelerId());
         preparedStatement.setInt(1, traveler.getUserId());
-        preparedStatement.setInt(1, traveler.getGender());
-        preparedStatement.setInt(1, traveler.getBirthDate());
-        preparedStatement.setInt(1, traveler.getInterests());
-        preparedStatement.setInt(1, traveler.getBudget());
+        preparedStatement.setString(1, traveler.getGender());
+        preparedStatement.setDate(1, traveler.getBirthDate());
+        preparedStatement.setString(1, traveler.getInterests());
+        preparedStatement.setDouble(1, traveler.getBudget());
 
         int rowAffected = preparedStatement.executeUpdate();
         rowInserted = rowAffected>0;
@@ -55,7 +55,7 @@ public Traveler selecTravelerById (int, travelerId) {
                     rs.getString("gender"),
                     rs.getDate("birth_date"),
                     rs.getString("interests"),
-                    rs.getInt("budget")
+                    rs.getDouble("budget")
                 );
             }
         }
@@ -77,7 +77,7 @@ public List <Traveler> selectAllTravelers(){
                     rs.getString("gender"),
                     rs.getDate("birth_date"),
                     rs.getString("interests"),
-                    rs.getInt("budget")
+                    rs.getDouble("budget")
             );
             traveler.add(traveler);
 
@@ -94,10 +94,10 @@ public boolean updateTraveler (Traveler traveler) {
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TRAVELER);
 
         preparedStatement.setInt(1, traveler.getUserId());
-        preparedStatement.setInt(2, traveler.getGender());
-        preparedStatement.setInt(3, traveler.getBirthDate());
-        preparedStatement.setInt(4, traveler.getInterests());
-        preparedStatement.setInt(5, traveler.getBudget());
+        preparedStatement.setString(2, traveler.getGender());
+        preparedStatement.setDate(3, traveler.getBirthDate());
+        preparedStatement.setString(4, traveler.getInterests());
+        preparedStatement.setDouble(5, traveler.getBudget());
         preparedStatement.setInt(6, traveler.getTravelerId());
 
         rowUpdated = preparedStatement.executeQuery() >0;
@@ -120,3 +120,5 @@ public boolean deleteTraveler (int traveler_id){
 }
 return rowDeleted;
 }
+
+
