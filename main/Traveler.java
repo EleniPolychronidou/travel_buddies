@@ -1,4 +1,5 @@
 package main;
+
 import java.sql.Date;
 
 public class Traveler {
@@ -7,11 +8,11 @@ public class Traveler {
     private String gender;
     private Date birthDate;
     private String interests;
-    private double budget; //Νιώθω ότι δεν χρειάζεται
+    private double budget;
 
     /**
      * Full constuctor
-     *   
+     * 
      * @param travelerId
      * @param userId
      * @param gender
@@ -20,16 +21,18 @@ public class Traveler {
      * @param budget
      */
 
+     //travelers που ήδη υπάρχουν
     public Traveler(int userId, String gender, Date birthDate, String interests) {
         this.userId = userId;
         this.gender = gender;
         this.birthDate = birthDate;
         this.interests = interests;
+        this.budget = budget;
 
     }
-
-    public Traveler (int travelerId, int userId, String gender, Date birthDate, String interests, double budget){
-			this.travelerId = travelerId;
+    //καινούργιοι travelers
+    public Traveler (int travelerId, int userId, String gender, Date birthDate, String interests){
+			this.travelerId=travelerId
 			this.userId = userId;
 			this.gender = gender;
 			this.birthDate = birthDate;
@@ -42,7 +45,7 @@ public class Traveler {
     }
 
 public void setTravelerId(int travelerId){
-	this.travelerId = travelerId;
+	this.travelerId;
 }
 
     public int getUserId() {
@@ -73,16 +76,18 @@ public void setTravelerId(int travelerId){
         return interests;
     }
 
-    public void setInterests(String interests) {
+    public void setInterests() {
         this.interests = interests;
     }
 
-    //Πρέπει να βάλεις getter και setter για το budget αν το κρατήσουμε
+    public double getBudget(){
+        this.budget=budget;
+    }
 
     @Override
     public String toString() {
         return "Traveler:" + "travelerId=" + travelerId + "userId=" + userId + "gender=" + gender + "birthDate="
-                + birthDate + "interests=" + interests;
+                + birthDate + "interests=" + interests + "budget" +budget;
     }
 
 }
