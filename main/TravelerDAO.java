@@ -1,6 +1,5 @@
 package 
 
-import com.model.Traveler;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
