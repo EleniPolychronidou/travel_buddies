@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% import java.util.*; %>
+<% import main.findatrip.Trip; %>
+<% import main.findatrip.TripService; %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,72 +21,50 @@
 </head>
 <body>
 <header>
-      <script>
-        fetch("../home/header.html")
-          .then((response) => response.text())
-          .then((data) => {
-            document.querySelector("header").innerHTML = data;
-          })
-          .catch((error) => console.error("Error loading header:", error));
-      </script>
-    </header>
+    <jsp:include page="../home/header.jsp" />
+</header>
 
-<div class="details-card" style="margin-top: 30px;">
-    <img id="tripImage" src="" alt="Trip Image">
-    <h2 id="tripTitle">Loading...</h2>
-    <p><strong>Destination:</strong> <span id="tripDestination"></span></p>
-    <p><strong>Purpose:</strong> <span id="tripPurpose"></span></p>
-    <p><strong>Budget:</strong> <span id="tripBudget"></span></p>
-    <p><strong>Dates:</strong> <span id="tripDates"></span></p>
-    <p><strong>Details:</strong> <span id="tripDetails"></span></p>
-    <p><strong>Created by:</strong> <span id="tripCreator"></span></p>
-    <p><strong>Participants so far:</strong> <span id="tripParticipants"></span></p>
+<%
+    String tripIdStr = request.getParameter("tripId");
 
-    <!-- Κουμπί Back -->
-    <button class="back-btn" onclick="history.back()">← Back</button>
+    if (tripIdStr == null) {
+%>
+        <p>Invalid trip.</p>
+<%
+        return;
+    }
 
-    <!-- Join Group κουμπί -->
-    <button class="join-btn" onclick="joinGroup()">Join Group</button>
+    int tripId = Integer.parseInt(tripIdStr);
+
+    TripService service = new TripService();
+    Trip trip = service.findById(tripId);
+
+    if (trip == null) {
+%>
+        <p>Trip not found.</p>
+<%
+        return;
+    }
+%>
+
+<div class="details-card">
+    <img src="<%=trip.getImg()%>" alt="<%=trip.getTitle()%>">
+
+    <h2><%=trip.getTitle()%></h2>
+    <p><strong>Destination:</strong> <%=trip.getDestination()%></p>
+    <p><strong>Purpose:</strong> <%=trip.getPurpose()%></p>
+    <p><strong>Budget:</strong> <%=trip.getBudget()%></p>
+    <p><strong>Dates:</strong> <%=trip.getStartDate()%> to <%=trip.getEndDate()%></p>
+    <p><strong>Details:</strong> <%=trip.getDetails()%></p>
+    <p><strong>Created by:</strong> <%=trip.getCreatedBy()%></p>
+    <p><strong>Participants:</strong> <%=trip.getParticipants()%></p>
+
+    <button class="btn" onclick="history.back()">← Back</button>
+    <button class="btn" onclick="alert('Joined successfully!')">Join Group</button>
 </div>
 
-<script>
-const params = new URLSearchParams(window.location.search);
-
-const title = params.get("title");
-const destination = params.get("destination");
-const purpose = params.get("purpose");
-const budget = params.get("budget");
-const start = params.get("start");
-const end = params.get("end");
-const details = params.get("details");
-const createdBy = params.get("createdBy");
-const participants = params.get("participants");
-
-document.getElementById("tripTitle").textContent = title;
-document.getElementById("tripDestination").textContent = destination;
-document.getElementById("tripPurpose").textContent = purpose;
-document.getElementById("tripBudget").textContent = budget;
-document.getElementById("tripDates").textContent = `${start} to ${end}`;
-document.getElementById("tripDetails").textContent = details;
-document.getElementById("tripCreator").textContent = params.get("createdBy");
-document.getElementById("tripParticipants").textContent = params.get("participants");
-document.getElementById("tripImage").src = params.get("img");
-
-
-function joinGroup() {
-    alert(`You have joined the group for "${title}"!`);
-}
-</script>
- <footer>
-      <script>
-        fetch("../home/footer.html")
-          .then((response) => response.text())
-          .then((data) => {
-            document.querySelector("footer").innerHTML = data;
-          })
-          .catch((error) => console.error("Error loading footer:", error));
-      </script>
-      
+<footer>
+    <jsp:include page="../home/footer.jsp" />
 </footer>
 
 </body>

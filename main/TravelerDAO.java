@@ -41,7 +41,7 @@ public boolean insertTraveler (Traveler traveler) {
     return rowInserted;
 }
 
-public Traveler selecTravelerById (int, travelerId) {
+public Traveler selecTravelerById (int  travelerId) {
     Traveler traveler = null;
     try (Connection connection = getConnection();
     PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TRAVELER_BY_ID)){
