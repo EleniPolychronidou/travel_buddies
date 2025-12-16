@@ -1,6 +1,6 @@
 package 
 
-import com.example.model.Traveler;
+import 
 import java.sql.*;
 import java.util.List;
 
