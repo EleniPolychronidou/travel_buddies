@@ -1,7 +1,8 @@
 package 
 
-import 
+import com.model.Traveler;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -41,4 +42,82 @@ public boolean insertTraveler (Traveler traveler) {
     return rowInserted;
 }
 
-public 
+public Traveler selecTravelerById (int, travelerId) {
+    Traveler traveler = null;
+    try (Connection connection = getConnection();
+    PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TRAVELER_BY_ID)){
+
+        preparedStatement.setInt (1, travelerId);
+        try (ResultSet rs= preparedStatement.executeQuery()) {
+            if (rs.next()){
+                traveler = new Traveler(
+                    rs.getInt("traveler_id"),
+                    rs.getInt("user_id"),
+                    rs.getString("gender"),
+                    rs.getDate("birth_date"),
+                    rs.getString("interests"),
+                    rs.getInt("budget")
+                );
+            }
+        }
+    }catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return traveler;
+}
+
+public List <Traveler> selectAllTravelers(){
+    List<Traveler> travelers = new ArrayList<>();
+    try (Connection connection = getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TRAVELERS));
+        
+        while (rs.next()) {
+            Traveler traveler = new Traveler(
+                    rs.getInt("traveler_id"),
+                    rs.getInt("user_id"),
+                    rs.getString("gender"),
+                    rs.getDate("birth_date"),
+                    rs.getString("interests"),
+                    rs.getInt("budget")
+            );
+            traveler.add(traveler);
+
+        }
+    }catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return travelers;
+}
+
+public boolean updateTraveler (Traveler traveler) {
+    boolean rowUpdated = false;
+    try (Connection connection = getConnection());
+        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TRAVELER);
+
+        preparedStatement.setInt(1, traveler.getUserId());
+        preparedStatement.setInt(2, traveler.getGender());
+        preparedStatement.setInt(3, traveler.getBirthDate());
+        preparedStatement.setInt(4, traveler.getInterests());
+        preparedStatement.setInt(5, traveler.getBudget());
+        preparedStatement.setInt(6, traveler.getTravelerId());
+
+        rowUpdated = preparedStatement.executeQuery() >0;
+} catch (SQLException e) {
+    e.printStackTrace();
+}
+return rowUpdated;
+
+}
+
+public boolean deleteTraveler (int traveler_id){
+    boolean rowDeleted = false;
+    try (Connection connection = getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TRAVELER));
+
+        preparedStatement.setInt(1, traveler_id);
+        rowDeleted = preparedStatement.executeUpdate() >0;
+}catch (SQLException e) {
+    e.printStackTrace();
+}
+return rowDeleted;
+}
