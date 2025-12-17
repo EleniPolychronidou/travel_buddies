@@ -5,10 +5,13 @@ public class Trip {
     private int tripId;
     private String title;
 	private String destination;
-	private int startDate;
-    private int endDate;
+	private  String startDate;
+    private String endDate;
 	private String description;
-	private double avgCost; //average_cost
+	private double avgCost;
+    private int participants;
+    private String createdBy;
+    private String img;
 
     /**
      * Full constuctor
@@ -16,7 +19,7 @@ public class Trip {
      * @param title //Υποχρεωτικό πεδίο
      * @param destination //Υποχρεωτικό πεδίο
      */
-    public Trip(int tripId, String title, String destination, int startDate, int endDate, String description, double avgCost) {        
+    public Trip(int tripId, String title, String destination, String startDate, String endDate, String description, double avgCost, int participants, String createdBy,  String img) {        
         if (title == null || destination == null) {
             throw new IllegalArgumentException("Title and Destination are mandatory fields.");
         }
@@ -28,14 +31,17 @@ public class Trip {
         this.endDate = endDate;
         this.description = description;
         this.avgCost = avgCost;
+        this.participants = participants ;
+        this.createdBy = createdBy;
+        this.img = img;
     }
 
     // Δεύτερος Constructor για δημιουργία από τη Φόρμα (χωρίς ID ακόμα)
-    public Trip(String title, String destination, int startDate, int endDate, String description, double avgCost) {
-        this(0, title, destination, startDate, endDate, description, avgCost);
+    public Trip(String title, String destination, String startDate, String endDate, String description, double avgCost, int participants, String createdBy, String img) {
+        this(0, title, destination, startDate, endDate, description, avgCost, participants, createdBy, img);
     }
 
-    public int geTripId() {
+    public int getTripId() {
         return tripId;
     }
 
@@ -59,19 +65,19 @@ public class Trip {
         this.destination = destination;
     }
 
-    public int getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(int startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public int getEndDate() {
+    public  String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(int endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -90,6 +96,25 @@ public class Trip {
     public double getAvgCost() {
         return avgCost;
     }
+    public int getParticipants() {
+        return participants;
+    }
+    public void setParticipants(int participants) {
+        this.participants = participants;
+    }
+    public String getCreatedBy() {
+        return createdBy;
+    }
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+    public String getImg() {
+        return img;
+    }
+    public void setImg(String img) {
+        this.img = img;
+    }
+
 
 
 }
