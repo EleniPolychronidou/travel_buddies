@@ -67,7 +67,7 @@ public Traveler selecTravelerById (int  travelerId) {
 public List <Traveler> selectAllTravelers(){
     List<Traveler> travelers = new ArrayList<>();
     try (Connection connection = getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TRAVELERS));
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TRAVELERS)){;
         
         while (rs.next()) {
             Traveler traveler = new Traveler(
@@ -89,7 +89,7 @@ public List <Traveler> selectAllTravelers(){
 
 public boolean updateTraveler (Traveler traveler) {
     boolean rowUpdated = false;
-    try (Connection connection = getConnection());
+    try (Connection connection = getConnection()){;
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TRAVELER);
 
         preparedStatement.setInt(1, traveler.getUserId());
