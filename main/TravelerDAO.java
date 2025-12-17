@@ -1,13 +1,12 @@
-package 
+package main;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TravelerDAO {
     private Connection getConnection() throws SQLException {
-        throw new UnsupportedOperationException("");
+        throw new UnsupportedOperationException(""); // το μνμ της βασης
     }
 
 private static final String INSERT_TRAVELER = "INSERT INTO traveler (userId, gender, birth_date, interests, budget) VALUES (?, ?, ?, ?, ?)";
