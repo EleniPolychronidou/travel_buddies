@@ -45,10 +45,15 @@
 <%
 try {
     Integer userId = (Integer) session.getAttribute("userId");
-
-    if (userId == null) {
-        throw new Exception("You must log in to join a group");
+     if (userId == null) {
+        userId = 1; // προσωρινός χρήστης
+        session.setAttribute("userId", userId);
     }
+
+
+    /*if (userId == null) {
+        throw new Exception("You must log in to join a group");
+    } Οταν φτιάξουμε το log in και σβηνω και το απο πάνω */
 
     int tripId = Integer.parseInt(request.getParameter("tripId"));
 
