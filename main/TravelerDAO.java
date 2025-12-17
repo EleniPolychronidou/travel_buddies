@@ -68,7 +68,8 @@ public List <Traveler> selectAllTravelers(){
     List<Traveler> travelers = new ArrayList<>();
     try (Connection connection = getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TRAVELERS)){;
-        
+        ResultSet rs = preparedStatement.executeQuery();
+
         while (rs.next()) {
             Traveler traveler = new Traveler(
                     rs.getInt("traveler_id"),
@@ -78,7 +79,7 @@ public List <Traveler> selectAllTravelers(){
                     rs.getString("interests"),
                     rs.getDouble("budget")
             );
-            traveler.add(traveler);
+            travelers.add(traveler);
 
         }
     }catch (SQLException e) {
@@ -99,6 +100,7 @@ public boolean updateTraveler (Traveler traveler) {
         preparedStatement.setDouble(5, traveler.getBudget());
         preparedStatement.setInt(6, traveler.getTravelerId());
 
+        //θες να πεις if >0 ή κατι διαφορετικο?
         rowUpdated = preparedStatement.executeQuery() >0;
 } catch (SQLException e) {
     e.printStackTrace();
