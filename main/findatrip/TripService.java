@@ -140,6 +140,7 @@ public Trip joinTrip(int tripId, int userId) throws Exception {
             if (db != null) db.close();
         }
     }
+    
 
 
 
