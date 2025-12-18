@@ -1,16 +1,19 @@
 package main.java;
+import java.sql.Date;
+
 
 public class Trip {
     
     private int tripId;
+    private int creatorId;
     private String title;
 	private String destination;
-	private  String startDate;
-    private String endDate;
+	private Date startDate;
+    private Date endDate;
+    private String purpose;
 	private String description;
 	private double avgCost;
-    private int participants;
-    private String createdBy;
+    
 
     /**
      * Full constuctor
@@ -18,25 +21,26 @@ public class Trip {
      * @param title //Υποχρεωτικό πεδίο
      * @param destination //Υποχρεωτικό πεδίο
      */
-    public Trip(int tripId, String title, String destination, String startDate, String endDate, String description, double avgCost, int participants, String createdBy,  String img) {        
+    public Trip(int tripId,int creatorId, String title, String destination, Date startDate, Date endDate,String purpose, String description, double avgCost) {        
         if (title == null || destination == null) {
             throw new IllegalArgumentException("Title and Destination are mandatory fields.");
         }
         
         this.tripId = tripId;
+        this.creatorId = creatorId;
         this.title = title;
         this.destination = destination;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.purpose = purpose;
         this.description = description;
         this.avgCost = avgCost;
-        this.participants = participants ;
-        this.createdBy = createdBy;
+        
     }
 
     // Δεύτερος Constructor για δημιουργία από τη Φόρμα (χωρίς ID ακόμα)
-    public Trip(String title, String destination, String startDate, String endDate, String description, double avgCost, int participants, String createdBy, String img) {
-        this(0, title, destination, startDate, endDate, description, avgCost, participants, createdBy, img);
+    public Trip(int creatorId, String title, String destination, Date startDate, Date endDate, String purpose, String description, double avgCost) {
+        this(0, creatorId, title, destination, startDate, endDate, purpose, description, avgCost);
     }
 
     public int getTripId() {
@@ -63,19 +67,19 @@ public class Trip {
         this.destination = destination;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public  String getEndDate() {
+    public  Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
@@ -94,17 +98,14 @@ public class Trip {
     public double getAvgCost() {
         return avgCost;
     }
-    public int getParticipants() {
-        return participants;
+    public int getCreatorId() {
+        return creatorId;
     }
-    public void setParticipants(int participants) {
-        this.participants = participants;
+    public void setCreatorId(int creatorId) {
+        this.creatorId = creatorId;
     }
-    public String getCreatedBy() {
-        return createdBy;
-    }
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public String getPurpose() {
+        return purpose;
     }
 
 

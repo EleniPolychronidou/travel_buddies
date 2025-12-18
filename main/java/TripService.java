@@ -1,7 +1,6 @@
-package main.findatrip;
+package main.java;
 
 import main.*;
-import main.java.Trip;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,13 +8,13 @@ import java.util.List;
 
 public class TripService {
 
-    public List<Trip> searchTrips(String destination, String start, String end) throws Exception {
+    public List<Trip> searchTrips(String destination, Date start, Date end) throws Exception {
         List<Trip> trips = new ArrayList<>();
         DB db = new DB(); //Θα δουλέψει στον server όπου θα ανεβάσουμε και το DB.java αρχείο
         Connection con = null;
         ResultSet rs = null;
         PreparedStatement stmt = null;
-        String sql = "SELECT * FROM trips "
+        String sql = "SELECT * FROM trip "
                    + "WHERE destination LIKE ? "
                    + "AND (? IS NULL OR start_date >= ?) "
                    + "AND (? IS NULL OR end_date <= ?);";
@@ -30,36 +29,37 @@ public class TripService {
                 stmt.setString(1, "%" + destination + "%");
             }
 
-            if (start == null || start.trim().isEmpty()) {
-                stmt.setString(2, null);
-                stmt.setString(3, null);
+            if (start == null ) {
+                stmt.setNull(2, java.sql.Types.DATE);
+            stmt.setNull(3, java.sql.Types.DATE);
             } else {
-                stmt.setString(2, start);
-                stmt.setString(3, start);
+                stmt.setDate(2, start);
+            stmt.setDate(3, start);
             }
 
-            if (end == null || end.trim().isEmpty()) {
-                stmt.setString(4, null);
-                stmt.setString(5, null);
+            if (end == null ) {
+                stmt.setNull(4, java.sql.Types.DATE);
+                stmt.setNull(5, java.sql.Types.DATE);
             } else {
-                stmt.setString(4, end);
-                stmt.setString(5, end);
+                stmt.setDate(4, end);
+                stmt.setDate(5, end);
             }
 
             rs = stmt.executeQuery();
 
             while (rs.next()) {
                 trips.add(new Trip(
-                        rs.getInt("id"),
+                        rs.getInt("trip_id"),
+                        rs.getInt("creator_id"),
                         rs.getString("title"),
                         rs.getString("destination"),
-                        rs.getDate("start_date").toString(),
-                        rs.getDate("end_date").toString(),
+                        rs.getDate("start_date"),
+                        rs.getDate("end_date"),
+                        rs.getString("purpose"),
                         rs.getString("description"),
-                        rs.getDouble("cost"), 
-                        rs.getInt("participants"),
-                        rs.getString("created_by"),
-                        rs.getString("img")
+                        rs.getDouble("avg_cost")
+                        
+
                 ));
             }
 
@@ -91,16 +91,16 @@ public class TripService {
 
         if (rs.next()) {
             return new Trip(
-                rs.getInt("id"),
-                rs.getString("title"),
-                rs.getString("destination"),
-                rs.getDate("start_date").toString(),
-                rs.getDate("end_date").toString(),
-                rs.getString("description"),
-                rs.getDouble("cost"),
-                rs.getInt("participants"),
-                rs.getString("created_by"),
-                rs.getString("img")
+                rs.getInt("trip_id"),
+                        rs.getInt("creator_id"),
+                        rs.getString("title"),
+                        rs.getString("destination"),
+                        rs.getDate("start_date"),
+                        rs.getDate("end_date"),
+                        rs.getString("purpose"),
+                        rs.getString("description"),
+                        rs.getDouble("avg_cost")
+                        
             );
         }
 
@@ -114,33 +114,21 @@ public class TripService {
         if (db != null) try { db.close(); } catch (Exception e) {}
     }
 }
-public Trip joinTrip(int tripId, int userId) throws Exception {
+private Trip_memberService memberService = new Trip_memberService();
 
-        DB db = new DB();
-        Connection con = null;
-        PreparedStatement stmt = null;
+    public int joinTrip(int tripId, int userId) throws Exception {
 
-        String sql = "UPDATE trips SET participants = participants + 1 WHERE id = ?";
 
-        try {
-            con = db.getConnection();
-            stmt = con.prepareStatement(sql);
-            stmt.setInt(1, tripId);
-
-            int rows = stmt.executeUpdate();
-
-            if (rows == 0) {
-                return null;
-            }
-
-            return findTripById(tripId);
-
-        } finally {
-            if (stmt != null) stmt.close();
-            if (db != null) db.close();
+        if (memberService.isMember(tripId, userId)) {
+            return memberService.countMembers(tripId);
         }
+
+
+        memberService.addMember(tripId, userId, false);
+
+
+        return memberService.countMembers(tripId);
     }
-    
 
 
 
