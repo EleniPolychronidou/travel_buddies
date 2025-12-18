@@ -11,7 +11,6 @@ public class Trip {
 	private double avgCost;
     private int participants;
     private String createdBy;
-    private String img;
 
     /**
      * Full constuctor
@@ -33,7 +32,6 @@ public class Trip {
         this.avgCost = avgCost;
         this.participants = participants ;
         this.createdBy = createdBy;
-        this.img = img;
     }
 
     // Δεύτερος Constructor για δημιουργία από τη Φόρμα (χωρίς ID ακόμα)
@@ -108,13 +106,6 @@ public class Trip {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
-    public String getImg() {
-        return img;
-    }
-    public void setImg(String img) {
-        this.img = img;
-    }
-
 
 
 }
