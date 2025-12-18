@@ -1,110 +1,87 @@
 package main.traveler;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
 
-public class TravelerDAO {
+public class Traveler {
+    private int travelerId;
+    private int userId;
+    private String gender;
+    private Date birthDate;
+    private String interests;
 
-        DB db = new DB(); //Θα δουλέψει στον server όπου θα ανεβάσουμε και το DB.java αρχείο
-        Connection con = null;
-        ResultSet rs = null;
-        PreparedStatement stmt = null;                                             
+    /**
+     * Full constuctor
+     * 
+     * @param travelerId
+     * @param userId
+     * @param gender
+     * @param birthDate
+     * @param interests
+     */
 
-    private static final String INSERT_TRAVELER = "INSERT INTO traveler (userId, gender, birth_date, interests) VALUES (?, ?, ?, ?)";
-    private static final String SELECT_TRAVELER_BY_ID = "SELECT traveler_id, userId, gender, birth_date, interests FROM traveler WHERE traveler_id = ?";
-    private static final String SELECT_ALL_TRAVELERS = "SELECT traveler_id, userId, gender, birth_date, interests FROM traveler";
-    private static final String UPDATE_TRAVELER = "UPDATE traveler SET userId=?, gender=?, birth_date=?, interests=? WHERE traveler_id = ?";
-    private static final String DELETE_TRAVELER = "DELETE FROM traveler WHERE traveler_id = ?";
+    // travelers που ήδη υπάρχουν
+    public Traveler(int userId, String gender, Date birthDate, String interests) {
+        this.userId = userId;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.interests = interests;
 
-    public boolean insertTraveler(Traveler traveler) {
-        boolean rowInserted = false;
-        try (Connection connection = getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TRAVELER)) {
-
-            preparedStatement.setInt(1, traveler.getUserId());
-            preparedStatement.setString(2, traveler.getGender());
-            preparedStatement.setDate(3, traveler.getBirthDate());
-            preparedStatement.setString(4, traveler.getInterests());
-
-            rowInserted = preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rowInserted;
     }
 
-    public Traveler selectTravelerById(int travelerId) {
-        Traveler traveler = null;
-        try (Connection connection = getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TRAVELER_BY_ID)) {
-
-            preparedStatement.setInt(1, travelerId);
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
-                    traveler = new Traveler(
-                            rs.getInt("traveler_id"),
-                            rs.getInt("userId"),
-                            rs.getString("gender"),
-                            rs.getDate("birth_date"),
-                            rs.getString("interests"));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return traveler;
+    // καινούργιοι travelers
+    public Traveler(int travelerId, int userId, String gender, Date birthDate, String interests) {
+        this.travelerId = travelerId;
+        this.userId = userId;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.interests = interests;
     }
 
-    public List<Traveler> selectAllTravelers() {
-        List<Traveler> travelers = new ArrayList<>();
-        try (Connection connection = getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TRAVELERS);
-                ResultSet rs = preparedStatement.executeQuery()) {
-
-            while (rs.next()) {
-                Traveler traveler = new Traveler(
-                        rs.getInt("traveler_id"),
-                        rs.getInt("userId"),
-                        rs.getString("gender"),
-                        rs.getDate("birth_date"),
-                        rs.getString("interests"));
-                travelers.add(traveler);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return travelers;
+    public int getTravelerId() {
+        return travelerId;
     }
 
-    public boolean updateTraveler(Traveler traveler) {
-        boolean rowUpdated = false;
-        try (Connection connection = getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TRAVELER)) {
-
-            preparedStatement.setInt(1, traveler.getUserId());
-            preparedStatement.setString(2, traveler.getGender());
-            preparedStatement.setDate(3, traveler.getBirthDate());
-            preparedStatement.setString(4, traveler.getInterests());
-            preparedStatement.setInt(5, traveler.getTravelerId());
-
-            rowUpdated = preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rowUpdated;
+    public void setTravelerId(int travelerId) {
+        this.travelerId = travelerId;
     }
 
-    public boolean deleteTraveler(int travelerId) {
-        boolean rowDeleted = false;
-        try (Connection connection = getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TRAVELER)) {
-
-            preparedStatement.setInt(1, travelerId);
-            rowDeleted = preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rowDeleted;
+    public int getUserId() {
+        return userId;
     }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getInterests() {
+        return interests;
+    }
+
+    public void setInterests(String interests) {
+        this.interests = interests;
+    }
+
+    @Override
+    public String toString() {
+        return "Traveler:" + "travelerId=" + travelerId + "userId=" + userId + "gender=" + gender + "birthDate="
+                + birthDate + "interests=" + interests;
+    }
+
 }
+
