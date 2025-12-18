@@ -1,6 +1,8 @@
 package main.findatrip;
 
 import main.*;
+import main.java.Trip;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
