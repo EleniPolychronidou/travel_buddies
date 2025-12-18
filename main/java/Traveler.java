@@ -1,4 +1,8 @@
+<<<<<<< HEAD:main/java/Traveler.java
 package main.java;
+=======
+package main.traveler;
+>>>>>>> 9e032ab72dbf652a9d93e1f1f90fb9da51e69938:main/Traveler.java
 
 import java.sql.Date;
 
@@ -8,7 +12,6 @@ public class Traveler {
     private String gender;
     private Date birthDate;
     private String interests;
-    private double budget;
 
     /**
      * Full constuctor
@@ -18,35 +21,33 @@ public class Traveler {
      * @param gender
      * @param birthDate
      * @param interests
-     * @param budget
      */
 
-     //travelers που ήδη υπάρχουν
-    public Traveler(int userId, String gender, Date birthDate, String interests, double budget) {
+    // travelers που ήδη υπάρχουν
+    public Traveler(int userId, String gender, Date birthDate, String interests) {
         this.userId = userId;
         this.gender = gender;
         this.birthDate = birthDate;
         this.interests = interests;
-        this.budget = budget;
 
     }
-    //καινούργιοι travelers
-    public Traveler (int travelerId, int userId, String gender, Date birthDate, String interests, double budget){
-			this.travelerId=travelerId;
-			this.userId = userId;
-			this.gender = gender;
-			this.birthDate = birthDate;
-			this.interests = interests;
-			this.budget = budget;
-}
+
+    // καινούργιοι travelers
+    public Traveler(int travelerId, int userId, String gender, Date birthDate, String interests) {
+        this.travelerId = travelerId;
+        this.userId = userId;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.interests = interests;
+    }
 
     public int getTravelerId() {
         return travelerId;
     }
 
-public void setTravelerId(int travelerId){
-	this.travelerId = travelerId;
-}
+    public void setTravelerId(int travelerId) {
+        this.travelerId = travelerId;
+    }
 
     public int getUserId() {
         return userId;
@@ -80,19 +81,11 @@ public void setTravelerId(int travelerId){
         this.interests = interests;
     }
 
-    //δεν χρειαζεται ααααααα
-    public double getBudget(){
-        return budget;
-    }
-
-    public void setBudget(double budget) {
-        this.budget = budget;
-    }
-
     @Override
     public String toString() {
         return "Traveler:" + "travelerId=" + travelerId + "userId=" + userId + "gender=" + gender + "birthDate="
-                + birthDate + "interests=" + interests + "budget" +budget;
+                + birthDate + "interests=" + interests;
     }
 
 }
+
