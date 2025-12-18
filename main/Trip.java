@@ -1,4 +1,4 @@
-package main.findatrip;
+package main;
 
 public class Trip {
     

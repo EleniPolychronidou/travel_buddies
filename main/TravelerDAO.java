@@ -1,13 +1,12 @@
-package 
+package main;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TravelerDAO {
     private Connection getConnection() throws SQLException {
-        throw new UnsupportedOperationException("");
+        throw new UnsupportedOperationException(""); // το μνμ της βασης
     }
 
 private static final String INSERT_TRAVELER = "INSERT INTO traveler (userId, gender, birth_date, interests, budget) VALUES (?, ?, ?, ?, ?)";
@@ -68,8 +67,9 @@ public Traveler selecTravelerById (int  travelerId) {
 public List <Traveler> selectAllTravelers(){
     List<Traveler> travelers = new ArrayList<>();
     try (Connection connection = getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TRAVELERS));
-        
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TRAVELERS)){;
+        ResultSet rs = preparedStatement.executeQuery();
+
         while (rs.next()) {
             Traveler traveler = new Traveler(
                     rs.getInt("traveler_id"),
@@ -79,7 +79,7 @@ public List <Traveler> selectAllTravelers(){
                     rs.getString("interests"),
                     rs.getDouble("budget")
             );
-            traveler.add(traveler);
+            travelers.add(traveler);
 
         }
     }catch (SQLException e) {
@@ -90,7 +90,7 @@ public List <Traveler> selectAllTravelers(){
 
 public boolean updateTraveler (Traveler traveler) {
     boolean rowUpdated = false;
-    try (Connection connection = getConnection());
+    try (Connection connection = getConnection()){;
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TRAVELER);
 
         preparedStatement.setInt(1, traveler.getUserId());
@@ -100,6 +100,7 @@ public boolean updateTraveler (Traveler traveler) {
         preparedStatement.setDouble(5, traveler.getBudget());
         preparedStatement.setInt(6, traveler.getTravelerId());
 
+        //θες να πεις if >0 ή κατι διαφορετικο?
         rowUpdated = preparedStatement.executeQuery() >0;
 } catch (SQLException e) {
     e.printStackTrace();

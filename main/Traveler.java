@@ -22,7 +22,7 @@ public class Traveler {
      */
 
      //travelers που ήδη υπάρχουν
-    public Traveler(int userId, String gender, Date birthDate, String interests) {
+    public Traveler(int userId, String gender, Date birthDate, String interests, double budget) {
         this.userId = userId;
         this.gender = gender;
         this.birthDate = birthDate;
@@ -31,8 +31,8 @@ public class Traveler {
 
     }
     //καινούργιοι travelers
-    public Traveler (int travelerId, int userId, String gender, Date birthDate, String interests){
-			this.travelerId=travelerId
+    public Traveler (int travelerId, int userId, String gender, Date birthDate, String interests, double budget){
+			this.travelerId=travelerId;
 			this.userId = userId;
 			this.gender = gender;
 			this.birthDate = birthDate;
@@ -45,7 +45,7 @@ public class Traveler {
     }
 
 public void setTravelerId(int travelerId){
-	this.travelerId;
+	this.travelerId = travelerId;
 }
 
     public int getUserId() {
@@ -76,12 +76,17 @@ public void setTravelerId(int travelerId){
         return interests;
     }
 
-    public void setInterests() {
+    public void setInterests(String interests) {
         this.interests = interests;
     }
 
+    //δεν χρειαζεται ααααααα
     public double getBudget(){
-        this.budget=budget;
+        return budget;
+    }
+
+    public void setBudget(double budget) {
+        this.budget = budget;
     }
 
     @Override
