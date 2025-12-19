@@ -59,22 +59,21 @@ try {
 
 
     TripService service = new TripService();
-    Trip trip = service.joinTrip(tripId, userId);
+    int membersCount = service.joinTrip(tripId, userId);
+    Trip trip = service.findTripById(tripId);
 
-    if (trip == null) {
-        throw new Exception("Trip not found");
-    }
+    
 %>
 
 <div class="box">
     <h2>You are in the group!</h2>
     <p>User ID: <strong><%=userId%></strong></p>
     <p>Joined trip: <strong><%=trip.getTitle()%></strong></p>
-    <p>Now the trip has <strong><%=trip.getParticipants()%></strong> people.</p>
+    <p>Now the trip has <strong><%=membersCount%></strong> people.</p>
 
     <a class="btn"
        href="<%=request.getContextPath()%>/viewdetails.jsp?tripId=<%=trip.getTripId()%>">
-        Re
+        Back
     </a>
 </div>
 

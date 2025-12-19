@@ -38,7 +38,7 @@
     int tripId = Integer.parseInt(tripIdStr);
 
     TripService service = new TripService();
-    Trip trip = service.findById(tripId);
+    Trip trip = service.findTripById(tripId);
 
     if (trip == null) {
 %>
@@ -50,7 +50,7 @@
 
 <div class="details-card">
 <% Trip_memberService memberService = new Trip_memberService();
-   int participants = memberService.countParticipants(trip.getTripId()); %>
+   int participants = memberService.countMembers(trip.getTripId()); %>
     <h2><%=trip.getTitle()%></h2>
     <p><strong>Destination:</strong> <%=trip.getDestination()%></p>
     <p><strong>Purpose:</strong> <%=trip.getPurpose()%></p>
@@ -60,7 +60,8 @@
     <p><strong>Created by:</strong> <%=trip.getCreatorUsername()%></p>
     <p><strong>Participants:</strong> <%=participants%></p>
     
-    <form action="<%=request.getContextPath()%>/JoinTripController.jsp" method="post">
+    <form action="../findatrip/JoinTripController.jsp" method="post">
+
         <input type="hidden" name="tripId" value="<%= trip.getTripId() %>">
         <button class="btn" type="submit">Join Trip</button>
     </form>
