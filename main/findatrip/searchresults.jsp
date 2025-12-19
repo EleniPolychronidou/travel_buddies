@@ -46,11 +46,13 @@
 <%
     List<Trip> trips = (List<Trip>) request.getAttribute("trips");
 
-
     if (trips == null || trips.isEmpty()) {
 %>
-        <p style="text-align:center;">No trips found.</p>
-<% } else { %>
+          <p>No trips found.</p>
+<%
+        return;
+    }
+%>
 
 
 
@@ -73,7 +75,7 @@
     </div>
 <%
     }
-}
+
 %>
 </div>
 
