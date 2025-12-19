@@ -44,6 +44,17 @@
 
 <button class="back-btn" onclick="window.location.href='findaTrip.jsp'">← Back</button>
 
+<%
+String purpose = (String) request.getAttribute("purpose");
+if (purpose != null) {
+%>
+    <p style="text-align:center; color:#546D79;">
+        Showing trips for: <strong><%= purpose %></strong>
+    </p>
+<%
+}
+%>
+
 
 <%
     List<Trip> trips = (List<Trip>) request.getAttribute("trips");

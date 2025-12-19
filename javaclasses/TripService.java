@@ -12,7 +12,7 @@ public class TripService {
         Connection con = null;
         ResultSet rs = null;
         PreparedStatement stmt = null;
-        String sql = "SELECT t.*, u.username FROM trip t JOIN agency a ON t.creator_id = a.agency_id JOIN user u ON a.user_id = u.user_id WHERE "
+        String sql = "SELECT t.*, u.username FROM trip t JOIN agency a ON t.creator_id = a.agency_id JOIN user u ON a.user_id = u.user_id "
                    + "WHERE t.destination LIKE ? "
                    + "AND (? IS NULL OR t.start_date >= ?) "
                    + "AND (? IS NULL OR t.end_date <= ?);";
@@ -44,6 +44,46 @@ public class TripService {
             }
 
             rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                trips.add(new Trip(
+                        rs.getInt("trip_id"),
+                        rs.getInt("creator_id"),
+                        rs.getString("title"),
+                        rs.getString("destination"),
+                        rs.getDate("start_date"),
+                        rs.getDate("end_date"),
+                        rs.getString("purpose"),
+                        rs.getString("description"),
+                        rs.getDouble("avg_cost"),
+                        rs.getString("username")));
+            }
+
+            return trips;
+
+        } catch (Exception e) {
+            throw new Exception("Error searching trips: " + e.getMessage());
+        } finally {
+            if (rs != null) try { rs.close(); } catch (Exception e) {}
+            if (stmt != null) try { stmt.close(); } catch (Exception e) {}
+            if (db != null) try { db.close(); } catch (Exception e) {}
+        }
+    }
+    public List<Trip> searchTripsByPurpose(String purpose) throws Exception {
+    List<Trip> trips = new ArrayList<>();
+        DB db = new DB(); //Θα δουλέψει στον server όπου θα ανεβάσουμε και το DB.java αρχείο
+        Connection con = null;
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+
+    String sql = "SELECT t.*, u.username FROM trip t JOIN agency a ON t.creator_id = a.agency_id JOIN user u ON a.user_id = u.user_id  WHERE t.purpose = ?";
+
+    try {
+            con = db.getConnection();
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, purpose);
+
+    rs = stmt.executeQuery();
 
             while (rs.next()) {
                 trips.add(new Trip(
