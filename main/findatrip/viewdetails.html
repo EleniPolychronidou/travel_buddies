@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% import java.util.*; %>
-<% import main.findatrip.Trip; %>
-<% import main.findatrip.TripService; %>
+<% import main.java.Trip; %>
+<% import main.java.TripService; %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,19 +48,25 @@
 %>
 
 <div class="details-card">
-    <img src="<%=trip.getImg()%>" alt="<%=trip.getTitle()%>">
-
+<% Trip_memberService memberService = new Trip_memberService();
+   int participants = memberService.countParticipants(trip.getTripId()); %>
     <h2><%=trip.getTitle()%></h2>
     <p><strong>Destination:</strong> <%=trip.getDestination()%></p>
     <p><strong>Purpose:</strong> <%=trip.getPurpose()%></p>
-    <p><strong>Budget:</strong> <%=trip.getBudget()%></p>
+    <p><strong>Budget:</strong> <%=trip.getAvgCost()%></p>
     <p><strong>Dates:</strong> <%=trip.getStartDate()%> to <%=trip.getEndDate()%></p>
-    <p><strong>Details:</strong> <%=trip.getDetails()%></p>
-    <p><strong>Created by:</strong> <%=trip.getCreatedBy()%></p>
-    <p><strong>Participants:</strong> <%=trip.getParticipants()%></p>
+    <p><strong>Details:</strong> <%=trip.getDescription()%></p>
+    <p><strong>Created by:</strong> <%=trip.getCreatorUsername()%></p>
+    <p><strong>Participants:</strong> <%=participants%></p>
+    
+    <form action="<%=request.getContextPath()%>/JoinTripController.jsp" method="post">
+        <input type="hidden" name="tripId" value="<%= trip.getTripId() %>">
+        <button class="btn" type="submit">Join Trip</button>
+    </form>
 
     <button class="btn" onclick="history.back()">← Back</button>
-    <button class="btn" onclick="alert('Joined successfully!')">Join Group</button>
+</div>
+
 </div>
 
 <footer>

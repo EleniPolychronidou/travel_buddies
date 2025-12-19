@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% import java.util.*; %>
-<% import main.findatrip.Trip; %>
-<% import main.findatrip.TripService; %>
+<% import main.java.Trip; %>
+<% import main.java.TripService; %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,17 +43,14 @@
 
 <button class="back-btn" onclick="window.location.href='findaTrip.html'">← Back</button>
 
-<div class="results-grid" id="resultsGrid"></div>
+
 <%
     List<Trip> trips = request.getAttribute("trips");
 
     if (trips == null || trips.isEmpty()) {
 %>
         <p style="text-align:center;">No trips found.</p>
-<%
-        return;
-    }
-%>
+<% } else { %>
 
 
 
@@ -63,28 +60,20 @@
     for (Trip trip : trips) {
 %>
     <div class="result-card">
-        <img src="<%=trip.img%>" alt="<%=trip.title%>">
+        <img src="https://via.placeholder.com/300x180.png?text=Trip+Image" alt="Trip Image">
         <h3><%=trip.title%></h3>
         <p><strong>Destination:</strong> <%=trip.destination%></p>
         <p><strong>Date:</strong> <%=trip.startDate%> to <%=trip.endDate%></p>
 
         <form action="viewdetails.jsp" method="get">
-            <input type="hidden" name="title" value="<%=trip.title%>">
-            <input type="hidden" name="destination" value="<%=trip.destination%>">
-            <input type="hidden" name="purpose" value="<%=trip.purpose%>">
-            <input type="hidden" name="budget" value="<%=trip.budget%>">
-            <input type="hidden" name="start" value="<%=trip.startDate%>">
-            <input type="hidden" name="end" value="<%=trip.endDate%>">
-            <input type="hidden" name="details" value="<%=trip.details%>">
-            <input type="hidden" name="createdBy" value="<%=trip.createdBy%>">
-            <input type="hidden" name="participants" value="<%=trip.participants%>">
-            <input type="hidden" name="img" value="<%=trip.img%>">
+            <input type="hidden" name="tripId" value="<%=trip.tripId%>">
 
             <button class="details-btn" type="submit">View Details</button>
         </form>
     </div>
 <%
     }
+}
 %>
 </div>
 

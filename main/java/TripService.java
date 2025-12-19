@@ -14,10 +14,10 @@ public class TripService {
         Connection con = null;
         ResultSet rs = null;
         PreparedStatement stmt = null;
-        String sql = "SELECT * FROM trip "
-                   + "WHERE destination LIKE ? "
-                   + "AND (? IS NULL OR start_date >= ?) "
-                   + "AND (? IS NULL OR end_date <= ?);";
+        String sql = "SELECT t.*, u.username FROM trip t JOIN agency a ON t.creator_id = a.agency_id JOIN user u ON a.user_id = u.user_id WHERE "
+                   + "WHERE t.destination LIKE ? "
+                   + "AND (? IS NULL OR t.start_date >= ?) "
+                   + "AND (? IS NULL OR t.end_date <= ?);";
 
         try {
             con = db.getConnection();
@@ -57,10 +57,8 @@ public class TripService {
                         rs.getDate("end_date"),
                         rs.getString("purpose"),
                         rs.getString("description"),
-                        rs.getDouble("avg_cost")
-                        
-
-                ));
+                        rs.getDouble("avg_cost"),
+                        rs.getString("username")));
             }
 
             return trips;
@@ -80,8 +78,8 @@ public class TripService {
     PreparedStatement stmt = null;
     ResultSet rs = null;
 
-    String sql = "SELECT * FROM trips WHERE id = ?";
-
+    String sql = "SELECT t.*, u.username FROM trip t JOIN agency a ON t.creator_id = a.agency_id JOIN user u ON a.user_id = u.user_id WHERE t.trip_id = ?"; 
+       
     try {
         con = db.getConnection();
         stmt = con.prepareStatement(sql);
@@ -99,7 +97,8 @@ public class TripService {
                         rs.getDate("end_date"),
                         rs.getString("purpose"),
                         rs.getString("description"),
-                        rs.getDouble("avg_cost")
+                        rs.getDouble("avg_cost"),
+                        rs.getString("username")
                         
             );
         }

@@ -13,6 +13,7 @@ public class Trip {
     private String purpose;
 	private String description;
 	private double avgCost;
+    private String creatorUsername;
     
 
     /**
@@ -21,7 +22,7 @@ public class Trip {
      * @param title //Υποχρεωτικό πεδίο
      * @param destination //Υποχρεωτικό πεδίο
      */
-    public Trip(int tripId,int creatorId, String title, String destination, Date startDate, Date endDate,String purpose, String description, double avgCost) {        
+    public Trip(int tripId,int creatorId, String title, String destination, Date startDate, Date endDate,String purpose, String description, double avgCost, String creatorUsername) {        
         if (title == null || destination == null) {
             throw new IllegalArgumentException("Title and Destination are mandatory fields.");
         }
@@ -35,12 +36,13 @@ public class Trip {
         this.purpose = purpose;
         this.description = description;
         this.avgCost = avgCost;
+        this.creatorUsername = creatorUsername;
         
     }
 
     // Δεύτερος Constructor για δημιουργία από τη Φόρμα (χωρίς ID ακόμα)
-    public Trip(int creatorId, String title, String destination, Date startDate, Date endDate, String purpose, String description, double avgCost) {
-        this(0, creatorId, title, destination, startDate, endDate, purpose, description, avgCost);
+    public Trip(int creatorId, String title, String destination, Date startDate, Date endDate, String purpose, String description, double avgCost, String creatorUsername) {
+        this(0, creatorId, title, destination, startDate, endDate, purpose, description, avgCost, creatorUsername);
     }
 
     public int getTripId() {
@@ -108,5 +110,11 @@ public class Trip {
         return purpose;
     }
 
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
+    }
+    public String getCreatorUsername() {
+        return creatorUsername;
+    }
 
 }
