@@ -87,12 +87,13 @@
     <!-- Trip Types Section -->
     <section class="trip-types">
       <h2> Browse by Trip Type</h2>
+      
+        
       <div class="types-grid">
         <div class="type-card recreation">
           <h3>Recreation</h3>
           <p>Relaxation, fun activities, and leisure time</p>
         </div>
-      <div class="types-grid">
         <div class="type-card adventure">
           <h3>Adventure</h3>
           <p>Hiking, camping & outdoor activities</p>
