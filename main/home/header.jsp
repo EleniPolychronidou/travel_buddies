@@ -26,7 +26,7 @@
               <a href="../findatrip/findaTrip.jsp">Find a Trip</a>
             </li>
             <li class="nav-button">
-              <a href="../helpPage/HelpPageTravelBuddy.html">Contact Us</a>
+              <a href="../helpPage/HelpPageTravelBuddy.jsp">Contact Us</a>
             </li>
           </ul>
         </div>

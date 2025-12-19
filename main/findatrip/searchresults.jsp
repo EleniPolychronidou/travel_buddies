@@ -21,7 +21,7 @@
         .details-btn:hover { background-color: #43555f; }
            .back-btn {
             position: fixed;
-            top: 100px;
+            top: 120px;
             left: 20px;
             padding: 5px 10px;
             background-color: #43555f;

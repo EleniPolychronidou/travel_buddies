@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -17,16 +18,9 @@
     
   
     <header>
-    <script>
-
-      fetch('../home/header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.querySelector('header').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading header:', error));
-
-    </script>
+    <header>
+        <jsp:include page="../home/header.jsp" />
+  </header>
     </header>
   
     <form id="newTripForm">
@@ -77,16 +71,9 @@
     <script src="date.js"></script>
     <script src="confirmation.js"></script>
 
-  <footer>
-      <script>
-
-        fetch('../home/footer.html')
-          .then(response => response.text())
-          .then(data => {
-              document.querySelector('footer').innerHTML = data;
-          })
-          .catch(error => console.error('Error loading footer:', error));
-          </script>
+    <footer>
+        <jsp:include page="../home/footer.jsp" />
+      
     </footer>
   </body>
   </html>

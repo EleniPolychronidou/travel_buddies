@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,22 +22,22 @@
         <div class="contents">
           <ul class="contents-items">
             <li class="nav-button">
-              <a href="home.html">Home</a>
+              <a href="home.jsp">Home</a>
             </li>
             <li class="nav-button">
-              <a href="../tripOrganisation/OrganiseTrip.html">Organise a Trip</a>
+              <a href="../tripOrganisation/OrganiseTrip.jsp">Organise a Trip</a>
             </li>
             <li class="nav-button">
-              <a href="../findatrip/findaTrip.html">Find a Trip</a>
+              <a href="../findatrip/findaTrip.jsp">Find a Trip</a>
             </li>
             <li class="nav-button">
-              <a href="../helpPage/HelpPageTravelBuddy.html">Contact Us</a>
+              <a href="../helpPage/HelpPageTravelBuddy.jsp">Contact Us</a>
             </li>
           </ul>
         </div>
         <div class="auth">
-          <div class="login-button"><a href="../register/signUporIn.html">Log In</a></div>
-          <div class="signup-button"><a href="../register/signUporIn.html">Sign Up</a></div>
+          <div class="login-button"><a href="../register/signUporIn.jsp">Log In</a></div>
+          <div class="signup-button"><a href="../register/signUporIn.jsp">Sign Up</a></div>
         </div>
       </nav>
     </header>
@@ -48,8 +49,8 @@
       <h2>Find your next travel buddy</h2>
       <p class="description">Join trips, meet people, and explore new destinations together.</p>
       <div class="buttons">
-        <a href="../register/signUporIn.html" class="btn">Suggest a Trip</a>
-        <a href="../register/signUporIn.html" class="btn">Find a Trip</a>
+        <a href="../tripOrganisation/OrganiseTrip.jsp" class="btn">Organise a Trip</a>
+        <a href="../findatrip/findaTrip.jsp" class="btn">Find a Trip</a>
       </div>
     </div>
   </div>
