@@ -173,6 +173,9 @@ body .desc {
     opacity: 0.9;
     text-align: center;
 }
+.recreation {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+}
 
 .adventure {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -182,11 +185,11 @@ body .desc {
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
-.beach {
+.bussiness {
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
-.city {
+.foodwine {
     background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
 

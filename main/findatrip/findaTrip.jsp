@@ -88,6 +88,11 @@
     <section class="trip-types">
       <h2> Browse by Trip Type</h2>
       <div class="types-grid">
+        <div class="type-card recreation">
+          <h3>Recreation</h3>
+          <p>Relaxation, fun activities, and leisure time</p>
+        </div>
+      <div class="types-grid">
         <div class="type-card adventure">
           <h3>Adventure</h3>
           <p>Hiking, camping & outdoor activities</p>
@@ -96,13 +101,13 @@
           <h3>Cultural</h3>
           <p>Museums, history & local experiences</p>
         </div>
-        <div class="type-card beach">
-          <h3>Beach</h3>
-          <p>Relaxing coastal getaways</p>
+        <div class="type-card business">
+          <h3>Business</h3>
+          <p>Corporate events & meetings</p>
         </div>
-        <div class="type-card city">
-          <h3>City Breaks</h3>
-          <p>Urban exploration & nightlife</p>
+        <div class="type-card foodwine">
+          <h3>Food & Wine</h3>
+          <p>Epicurean journeys & tastings</p>
         </div>
       </div>
     </section>
