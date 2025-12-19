@@ -2,6 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="main.java.Trip" %>
 <%@ page import="main.java.TripService" %>
+<%@ page import="main.java.Trip_memberService" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
