@@ -20,16 +20,17 @@
         .details-btn { margin: 10px; padding: 8px 12px; background-color: #546D79; color: white; border: none; border-radius: 6px; cursor: pointer; }
         .details-btn:hover { background-color: #43555f; }
            .back-btn {
-                position: absolute;
-                top: 20px;
-                left: 20px;
-                padding: 5px 10px;
-                background-color: #43555f;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-            }
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            padding: 5px 10px;
+            background-color: #43555f;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            z-index: 1000;
+        }
             .back-btn:hover {
                 background-color: #546D79;
             }
@@ -49,7 +50,14 @@
 
     if (trips == null || trips.isEmpty()) {
 %>
-          <p>No trips found.</p>
+          <div style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+        ">
+            <p>No trips found.</p>
+        </div>
 <%
         return;
     }
