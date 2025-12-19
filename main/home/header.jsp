@@ -20,7 +20,7 @@
               <a href="../home/home.html">Home</a>
             </li>
             <li class="nav-button">
-              <a href="../tripOrganisation/OrganiseTrip.html">Organise a Trip</a>
+              <a href="../tripOrganisation/OrganiseTrip.jsp">Organise a Trip</a>
             </li>
             <li class="nav-button">
               <a href="../findatrip/findaTrip.jsp">Find a Trip</a>
