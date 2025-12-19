@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% import java.util.*; %>
-<% import main.java.Trip; %>
-<% import main.java.TripService; %>
+<%@ page import="java.util.List" %>
+<%@ page import="main.java.Trip" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +44,8 @@
 
 
 <%
-    List<Trip> trips = request.getAttribute("trips");
+    List<Trip> trips = (List<Trip>) request.getAttribute("trips");
+
 
     if (trips == null || trips.isEmpty()) {
 %>
