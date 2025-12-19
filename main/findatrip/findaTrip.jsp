@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <title>Find a Trip</title>
     <link rel="stylesheet" href="../styleforcss/style.css" />
-    <link rel="stylesheet" href="findatrip.css" />
+    <link rel="stylesheet" href="findaTrip.css" />
   </head>
 
   <body>
