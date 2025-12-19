@@ -17,7 +17,7 @@
         <div class="contents">
           <ul class="contents-items">
             <li class="nav-button">
-              <a href="../home/home.html">Home</a>
+              <a href="../home/home.jsp">Home</a>
             </li>
             <li class="nav-button">
               <a href="../tripOrganisation/OrganiseTrip.jsp">Organise a Trip</a>
