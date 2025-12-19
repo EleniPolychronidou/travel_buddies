@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% import java.util.*; %>
-<% import main.java.Trip; %>
-<% import main.java.TripService; %>
+<%@ page import="java.util.*" %>
+<%@ page import="main.java.Trip" %>
+<%@ page import="main.java.TripService" %>
 
 <!DOCTYPE html>
 <html lang="el">
