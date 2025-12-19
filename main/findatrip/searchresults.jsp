@@ -19,8 +19,10 @@
         .result-card p { margin: 5px 10px; }
         .details-btn { margin: 10px; padding: 8px 12px; background-color: #546D79; color: white; border: none; border-radius: 6px; cursor: pointer; }
         .details-btn:hover { background-color: #43555f; }
-            .back-btn {
-                margin: 20px;
+           .back-btn {
+                position: absolute;
+                top: 20px;
+                left: 20px;
                 padding: 5px 10px;
                 background-color: #43555f;
                 color: white;
@@ -39,7 +41,7 @@
 </header>
 <h2>Search Results</h2>
 
-<button class="back-btn" onclick="window.location.href='findaTrip.html'">← Back</button>
+<button class="back-btn" onclick="window.location.href='findaTrip.jsp'">← Back</button>
 
 
 <%
