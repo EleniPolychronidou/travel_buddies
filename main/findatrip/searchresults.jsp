@@ -63,12 +63,12 @@
 %>
     <div class="result-card">
         <img src="https://via.placeholder.com/300x180.png?text=Trip+Image" alt="Trip Image">
-        <h3><%=trip.title%></h3>
-        <p><strong>Destination:</strong> <%=trip.destination%></p>
-        <p><strong>Date:</strong> <%=trip.startDate%> to <%=trip.endDate%></p>
+        <h3><%=trip.getTitle()%></h3>
+        <p><strong>Destination:</strong> <%=trip.getDestination()%></p>
+        <p><strong>Date:</strong> <%=trip.getStartDate()%> to <%=trip.getEndDate()%></p>
 
         <form action="viewdetails.jsp" method="get">
-            <input type="hidden" name="tripId" value="<%=trip.tripId%>">
+            <input type="hidden" name="tripId" value="<%=trip.getTripId()%>">
 
             <button class="details-btn" type="submit">View Details</button>
         </form>
