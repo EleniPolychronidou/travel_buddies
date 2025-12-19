@@ -1,6 +1,4 @@
-package main.java;
-
-import main.*;
+package javaclasses;
 
 import java.sql.*;
 import java.util.ArrayList;

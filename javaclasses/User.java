@@ -1,4 +1,4 @@
-package main.java;
+package javaclasses;
 
 public class User {
 

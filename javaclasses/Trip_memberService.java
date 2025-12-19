@@ -1,4 +1,4 @@
-package main.java;
+package javaclasses;
 import java.sql.*;
 
 public class Trip_memberService {

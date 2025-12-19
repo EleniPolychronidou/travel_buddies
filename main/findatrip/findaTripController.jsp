@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="main.findatrip.Trip, main.findatrip.TripService, java.util.List" %>
+<%@ page import="javaclasses.findatrip.Trip, javaclasses.TripService, java.util.List" %>
 <%@ page errorPage="appError.jsp" %>
 
 <%

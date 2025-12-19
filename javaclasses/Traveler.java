@@ -1,5 +1,5 @@
 <<<<<<< HEAD:main/java/Traveler.java
-package main.java;
+
 =======
 
 >>>>>>> 9e032ab72dbf652a9d93e1f1f90fb9da51e69938:main/Traveler.java

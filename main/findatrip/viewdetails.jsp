@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="main.java.Trip" %>
-<%@ page import="main.java.TripService" %>
-<%@ page import="main.java.Trip_memberService" %>
+<%@ page import="javaclasses.Trip" %>
+<%@ page import="javaclasses.TripService" %>
+<%@ page import="javaclasses.Trip_memberService" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
