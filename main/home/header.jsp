@@ -23,7 +23,7 @@
               <a href="../tripOrganisation/OrganiseTrip.html">Organise a Trip</a>
             </li>
             <li class="nav-button">
-              <a href="../findatrip/findaTrip.html">Find a Trip</a>
+              <a href="../findatrip/findaTrip.jsp">Find a Trip</a>
             </li>
             <li class="nav-button">
               <a href="../helpPage/HelpPageTravelBuddy.html">Contact Us</a>
