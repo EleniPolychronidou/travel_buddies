@@ -90,23 +90,23 @@
       
         
       <div class="types-grid">
-        <div class="type-card recreation" onclick="window.location.href='searchTrips.jsp?purpose=Recreation'">
+        <div class="type-card recreation" onclick="window.location.href='searchByPurpose.jsp?purpose=Recreation'">
           <h3>Recreation</h3>
           <p>Relaxation, fun activities, and leisure time</p>
         </div>
-        <div class="type-card adventure" onclick="window.location.href='searchTrips.jsp?purpose=Adventure'">
+        <div class="type-card adventure" onclick="window.location.href='searchByPurpose.jsp?purpose=Adventure'">
           <h3>Adventure</h3>
           <p>Hiking, camping & outdoor activities</p>
         </div>
-        <div class="type-card cultural" onclick="window.location.href='searchTrips.jsp?purpose=Cultural'">
+        <div class="type-card cultural" onclick="window.location.href='searchByPurpose.jsp?purpose=Cultural'">
           <h3>Cultural</h3>
           <p>Museums, history & local experiences</p>
         </div>
-        <div class="type-card business" onclick="window.location.href='searchTrips.jsp?purpose=Business'">
+        <div class="type-card business" onclick="window.location.href='searchByPurpose.jsp?purpose=Business'">
           <h3>Business</h3>
           <p>Corporate events & meetings</p>
         </div>
-        <div class="type-card foodwine" onclick="window.location.href='searchTrips.jsp?purpose=Food & Wine'">
+        <div class="type-card foodwine" onclick="window.location.href='searchByPurpose.jsp?purpose=Food & Wine'">
           <h3>Food & Wine</h3>
           <p>Epicurean journeys & tastings</p>
         </div>

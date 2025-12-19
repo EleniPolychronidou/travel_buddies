@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="javaclasses.findatrip.Trip" %>
+<%@ page import="javaclasses.Trip" %>
 <%@ page import="javaclasses.TripService" %>
 
 <%
