@@ -20,18 +20,17 @@
         .details-btn { margin: 10px; padding: 8px 12px; background-color: #546D79; color: white; border: none; border-radius: 6px; cursor: pointer; }
         .details-btn:hover { background-color: #43555f; }
             .back-btn {
-            margin: 5px;       
-            padding: 5px 10px;     
-            background-color: #43555f;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            align-items: left;
-            margin-left: 20px;
-            margin-right:2200px ;
-}
-        .back-btn:hover { background-color:  #43555f; }
+                margin: 20px;
+                padding: 5px 10px;
+                background-color: #43555f;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+            .back-btn:hover {
+                background-color: #546D79;
+            }
     </style>
 </head>
 <body>
