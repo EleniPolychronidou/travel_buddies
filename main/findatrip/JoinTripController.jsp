@@ -59,21 +59,25 @@ try {
 
 
     TripService service = new TripService();
-    int membersCount = service.joinTrip(tripId, userId);
+    int membersCount = service.joinTrip(tripId, userId)+1;
     Trip trip = service.findTripById(tripId);
 
     
 %>
 
 <div class="box">
-    <h2>You are in the group!</h2>
-    <p>User ID: <strong><%=userId%></strong></p>
+    <h2>You succesfully joined the trip!</h2>
+
+    
     <p>Joined trip: <strong><%=trip.getTitle()%></strong></p>
     <p>Now the trip has <strong><%=membersCount%></strong> people.</p>
 
     <a class="btn"
-       href="<%=request.getContextPath()%>/viewdetails.jsp?tripId=<%=trip.getTripId()%>">
+       href="../findatrip/viewdetails.jsp?tripId=<%= trip.getTripId() %>">
         Back
+    </a>
+    <a class="btn">
+        Chat
     </a>
 </div>
 

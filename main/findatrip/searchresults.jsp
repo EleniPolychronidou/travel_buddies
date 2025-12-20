@@ -82,7 +82,7 @@ if (purpose != null) {
     for (Trip trip : trips) {
 %>
     <div class="result-card">
-        <img src="https://via.placeholder.com/300x180.png?text=Trip+Image" alt="Trip Image">
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80" alt="Trip Image">
         <h3><%=trip.getTitle()%></h3>
         <p><strong>Destination:</strong> <%=trip.getDestination()%></p>
         <p><strong>Date:</strong> <%=trip.getStartDate()%> to <%=trip.getEndDate()%></p>

@@ -21,7 +21,7 @@
 
     
 <div class="filters">
-    <form action="searchresults.jsp" method="get">
+    <form action="findaTripController.jsp" method="get">
         <label style="margin-left:10px;">Destination</label>
         <input name="destination" type="text" placeholder="Paris">
 
@@ -40,46 +40,46 @@
     <!-- Popular Destinations Section -->
     <section class="popular-destinations">
       <h2>Popular Destinations</h2>
-      <div class="destinations-grid">
-        <div class="destination-card">
+      <div class="destinations-grid" >
+        <div class="destination-card" onclick="window.location.href='findaTripController.jsp?destination=Greece'">
           <div class="destination-image">
             <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Greece">
           </div>
           <h3>Greece</h3>
           <p>Island hopping & ancient history</p>
-          <span class="trips-count">24 trips available</span>
+          
         </div>
-        <div class="destination-card">
+        <div class="destination-card" onclick="window.location.href='findaTripController.jsp?destination=Italy'">
           <div class="destination-image">
             <img src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Italy">
           </div>
           <h3>Italy</h3>
           <p>Food, art & romantic cities</p>
-          <span class="trips-count">18 trips available</span>
+
         </div>
-        <div class="destination-card">
+        <div class="destination-card" onclick="window.location.href='findaTripController.jsp?destination=Spain'">
           <div class="destination-image">
             <img src="https://images.unsplash.com/photo-1543785734-4b6e564642f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spain">
           </div>
           <h3>Spain</h3>
           <p>Beaches & vibrant culture</p>
-          <span class="trips-count">22 trips available</span>
+          
         </div>
-        <div class="destination-card">
+        <div class="destination-card" onclick="window.location.href='findaTripController.jsp?destination=France'">
             <div class="destination-image">
                 <img src="https://images.unsplash.com/photo-1549144511-f099e773c147?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="France">
             </div>
             <h3>France</h3>
             <p>Romance, wine & landmarks</p>
-            <span class="trips-count">20 trips available</span>
+            
         </div>
-        <div class="destination-card">
+        <div class="destination-card" onclick="window.location.href='findaTripController.jsp?destination=Portugal'">
           <div class="destination-image">
             <img src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Portugal">
           </div>
           <h3>Portugal</h3>
           <p>Coastal charm & heritage</p>
-          <span class="trips-count">15 trips available</span>
+          
         </div>
       </div>
     </section>
@@ -106,7 +106,7 @@
           <h3>Business</h3>
           <p>Corporate events & meetings</p>
         </div>
-        <div class="type-card foodwine" onclick="window.location.href='searchByPurpose.jsp?purpose=Food & Wine'">
+        <div class="type-card foodwine" onclick="window.location.href='searchByPurpose.jsp?purpose=FOOD_WINE'">
           <h3>Food & Wine</h3>
           <p>Epicurean journeys & tastings</p>
         </div>

@@ -12,7 +12,7 @@
         body { font-family: Arial, sans-serif; background-color: #f3f3f3; margin: 0; padding: 20px; }
         .details-card { max-width: 500px; margin: 0 auto; background: white; border-radius: 12px; padding: 20px; box-shadow: 0px 4px 10px rgba(0,0,0,0.15); }
         .details-card img { width: 100%; height: 250px; object-fit: cover; border-radius: 12px; margin-bottom: 15px; }
-        h2 { margin-top: 0; }
+        h2 { margin-top: 2; color: #546D79; }
         .back-btn, .join-btn { margin-top: 10px; padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; color: white; }
         .back-btn { background-color: #546D79; }
         .back-btn:hover { background-color: #546D79; }
@@ -52,6 +52,7 @@
 <% Trip_memberService memberService = new Trip_memberService();
    int participants = memberService.countMembers(trip.getTripId()); %>
     <h2><%=trip.getTitle()%></h2>
+    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80" alt="Trip Image">
     <p><strong>Destination:</strong> <%=trip.getDestination()%></p>
     <p><strong>Purpose:</strong> <%=trip.getPurpose()%></p>
     <p><strong>Budget:</strong> <%=trip.getAvgCost()%></p>
@@ -63,10 +64,10 @@
     <form action="../findatrip/JoinTripController.jsp" method="post">
 
         <input type="hidden" name="tripId" value="<%= trip.getTripId() %>">
-        <button class="btn" type="submit">Join Trip</button>
+        <button class="join-btn" type="submit">Join Trip</button>
     </form>
 
-    <button class="btn" onclick="history.back()">← Back</button>
+    <button class="back-btn" onclick="window.location.href='findaTrip.jsp'"">← Back</button>
 </div>
 
 </div>
