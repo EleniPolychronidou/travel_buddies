@@ -151,6 +151,55 @@ public class TripService {
         if (db != null) try { db.close(); } catch (Exception e) {}
     }
 }
+
+public int createTrip(int creatorId, String title, String destination,
+                          Date startDate, Date endDate, String purpose,
+                          String description, double avgCost) throws Exception {
+
+        DB db = new DB();
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet keys = null;
+
+        String sql = "INSERT INTO trip (creator_id, title, destination, start_date, end_date, purpose, description, avg_cost) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            con = db.getConnection();
+            stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            stmt.setInt(1, creatorId);
+            stmt.setString(2, title);
+            stmt.setString(3, destination);
+
+            if (startDate != null) stmt.setDate(4, startDate);
+            else stmt.setNull(4, Types.DATE);
+
+            if (endDate != null) stmt.setDate(5, endDate);
+            else stmt.setNull(5, Types.DATE);
+
+            stmt.setString(6, purpose);
+            stmt.setString(7, description);
+            stmt.setDouble(8, avgCost);
+
+            int affected = stmt.executeUpdate();
+            if (affected == 0) {
+                throw new Exception("Trip insert failed.");
+            }
+
+            keys = stmt.getGeneratedKeys();
+            if (keys.next()) {
+                return keys.getInt(1);
+            }
+            throw new Exception("Trip insert succeeded but no ID returned.");
+
+        } finally {
+            if (keys != null) try { keys.close(); } catch (Exception ignore) {}
+            if (stmt != null) try { stmt.close(); } catch (Exception ignore) {}
+            if (db != null) try { db.close(); } catch (Exception ignore) {}
+        }
+    }
+
 private Trip_memberService memberService = new Trip_memberService();
 
     public int joinTrip(int tripId, int userId) throws Exception {

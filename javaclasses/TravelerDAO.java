@@ -1,9 +1,11 @@
-package javaclasses;
+
 
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javaclasses.Traveler;
 
 public class TravelerDAO {
     private Connection getConnection() throws SQLException {

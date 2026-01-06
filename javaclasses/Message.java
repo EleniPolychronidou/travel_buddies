@@ -1,4 +1,4 @@
-package
+package javaclasses;
 
 import java.time.LocalDateTime;
 
@@ -7,6 +7,7 @@ public class Message {
   private int message_id;
   private int sender_id;
   private int trip_id;
+  private String content;
   private LocalDateTime send_date;
 
   public Message() {}

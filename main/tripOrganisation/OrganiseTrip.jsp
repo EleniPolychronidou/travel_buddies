@@ -22,44 +22,55 @@
         <jsp:include page="../home/header.jsp" />
   </header>
     </header>
+     <% if (request.getAttribute("success_message") != null) { %>
+    <div class="success-message">
+        <%= request.getAttribute("success_message") %>
+    </div>
+<% } %>
+
+<% if (request.getAttribute("error_message") != null) { %>
+    <div class="error-message">
+        <%= request.getAttribute("error_message") %>
+    </div>
+<% } %>
   
-    <form id="newTripForm">
-      <h2 style="margin-top:0;margin-bottom:6px">Suggest a new trip</h2>
+    <form id="newTripForm" action="OrganiseTripController.jsp" method="post">
+      <h2 style="margin-top:0;margin-bottom:6px">Organise a new trip</h2>
       <p style="margin-top:0;color:var(--muted);font-size:13px"></p>
 
       <label for="tripTitle">Trip Title:<span style="color: red">*</span></label>
-      <input type="text" id="tripTitle" placeholder=" Fun Weekend in Paris " required>
+      <input type="text" id="tripTitle" name="title" placeholder=" Fun Weekend in Paris " required>
       <label for="destination">Destination:<span style="color: red">*</span></label>
-      <input type="text" id="destination" placeholder=" Paris, France " required>
+      <input type="text" id="destination" name="destination" placeholder=" Paris, France " required>
+
       <label for="travelPurpose"> Travel Purpose:<span style="color: red">*</span></label>
-      <select id="deviceType"  required>
-      <div class="options">
-        <option>Recreation</option>
-          <option>Adventure</option>
-          <option>Cultural</option>
-          <option>Business</option>
-          <option>Food & Wine</option>
-      </div>
-      </select>
+      <select id="travelPurpose" name="purpose" required>
+      <option value="">-- Select purpose --</option>
+      <option value="Recreation">Recreation</option>
+      <option value="Adventure">Adventure</option>
+      <option value="Cultural">Cultural</option>
+      <option value="Business">Business</option>
+      <option value="Food & Wine">Food & Wine</option>
+    </select>
       
       <div style="display:flex; gap:20px; justify-content: space-between; margin-bottom: 10px;">
           <div style="fleX :1;">
           <label for="start">Start date</label>
-          <input id="start" type="date" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #546D79;">
+          <input id="start" name="start" type="date" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #546D79;">
           </div>
           <div style="flex:1;">
           <label for="end">End date</label>
-          <input id="end" type="date" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #546D79;">
+          <input id="end" name="end" type="date" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #546D79;">
           </div>
       </div>
       
       <div>
           <label for="budget">Budget range (€)</label>
-          <input id="budget" type="text" placeholder="200 - 600">
+          <input id="budget" name="avgCost" type="number" step="0.01" min="0" type="text" placeholder="200">
       </div>
 
       <label for="tripDescription">Trip description:</label>
-      <textarea id="comments" name="comments" rows="4"></textarea>
+      <textarea id="tripDescription" name="description" rows="4"></textarea>
       <button type="reset">Reset</button>
       <button type="submit">Publish Trip</button>
 
