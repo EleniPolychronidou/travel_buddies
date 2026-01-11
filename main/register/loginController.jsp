@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page errorPage="appError.jsp" %>
+<%@ page import="main.javaclasses.UserDAO.*" %>
 
 <%
-String username = request.getParameter("username");
+String email = request.getParameter("email");
 String password = request.getParameter("password");
 
-UserService uService = new UserService();
+UserDAO uDao = new UserDAO();
 
 try {
 
-    User user = uService.authenticate(username, password);
+    User user = uDao.authenticate(email, password);
 
     session.setAttribute("authenticated_user", user);
 

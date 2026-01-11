@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.SQLIntegrityConstraintViolationException" %>
 <%@ page errorPage="appError.jsp" %>
+<%@ page import="main.javaclasses.UserDAO.*" %>
 
 <%
 String type        = request.getParameter("user_type");
@@ -22,7 +23,7 @@ if (type == null && password == null && email == null) {
 
 try {
     
-    uService.validateUser(type, firstname, lastname, bday, gender, business, phone, address, password, email);
+    uDAO.validateUser(type, firstname, lastname, bday, gender, business, phone, address, password, email);
 
     
     User user = new User(email, password, type);
