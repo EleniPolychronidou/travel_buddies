@@ -1,9 +1,9 @@
 package javaclasses;
 
-
 import java.sql.Date;
 
 public class Traveler {
+
     private int travelerId;
     private int userId;
     private String gender;
@@ -12,14 +12,13 @@ public class Traveler {
 
     /**
      * Full constuctor
-     * 
+     *
      * @param travelerId
      * @param userId
      * @param gender
      * @param birthDate
      * @param interests
      */
-
     // travelers που ήδη υπάρχουν
     public Traveler(int userId, String gender, Date birthDate, String interests) {
         this.userId = userId;
@@ -85,4 +84,3 @@ public class Traveler {
     }
 
 }
-

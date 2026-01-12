@@ -1,7 +1,6 @@
 package javaclasses;
 
 import java.sql.*;
-import javaclasses.User.Role; // Σιγουρέψου ότι το User class είναι στο πακέτο javaclasses
 
 public class UserDAO {
 
@@ -16,21 +15,20 @@ public class UserDAO {
     private static final String CHECK_EMAIL = "SELECT user_id FROM user WHERE email = ?";
 
     /**
-     * Εγγραφή χρήστη. Επιστρέφει το ID που μόλις δημιουργήθηκε,
-     * ώστε να χρησιμοποιηθεί για τη δημιουργία Traveler ή Agency.
-     * Επιστρέφει -1 σε περίπτωση λάθους.
+     * Εγγραφή χρήστη. Επιστρέφει το ID που μόλις δημιουργήθηκε, ώστε να
+     * χρησιμοποιηθεί για τη δημιουργία Traveler ή Agency. Επιστρέφει -1 σε
+     * περίπτωση λάθους.
      */
     public int registerUser(User user) throws Exception {
         int generatedId = -1;
 
         // RETURN_GENERATED_KEYS για να πάρουμε το ID που μόλις φτιάχτηκε
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setString(4, user.getRoleForDB()); // Χρήση της μεθόδου getRoleForDB()
+            preparedStatement.setString(4, user.getRole()); // Χρήση της μεθόδου getRole()
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -44,13 +42,13 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             // Έλεγχος αν υπάρχει ήδη το email (Duplicate entry - Error Code 1062 για MySQL)
-            if (e.getErrorCode() == 1062) { 
+            if (e.getErrorCode() == 1062) {
                 throw new Exception("Το email χρησιμοποιείται ήδη.");
             }
             e.printStackTrace();
             throw new Exception("Σφάλμα βάσης δεδομένων: " + e.getMessage());
         }
-        
+
         return generatedId;
     }
 
@@ -60,25 +58,21 @@ public class UserDAO {
     public User authenticate(String email, String password) throws Exception {
         User user = null;
 
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(CHECK_LOGIN)) {
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(CHECK_LOGIN)) {
 
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
-                    // Μετατροπή του string της βάσης σε Enum Role (handle case sensitivity)
-                    String roleStr = rs.getString("role").toUpperCase();
-                    Role role = Role.valueOf(roleStr); 
+                    String roleStr = rs.getString("role");
 
                     user = new User(
-                        rs.getInt("user_id"),
-                        rs.getString("username"),
-                        rs.getString("email"),
-                        rs.getString("password"),
-                        role
-                    );
+                            rs.getInt("user_id"),
+                            rs.getString("username"),
+                            rs.getString("email"),
+                            rs.getString("password"),
+                            roleStr);
                 }
             }
         } catch (Exception e) {
@@ -92,13 +86,12 @@ public class UserDAO {
      * Έλεγχος αν υπάρχει το email
      */
     public boolean emailExists(String email) {
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(CHECK_EMAIL)) {
-             
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(CHECK_EMAIL)) {
+
             preparedStatement.setString(1, email);
             ResultSet rs = preparedStatement.executeQuery();
             return rs.next();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;

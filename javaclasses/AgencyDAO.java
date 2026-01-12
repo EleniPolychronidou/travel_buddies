@@ -1,6 +1,7 @@
 package javaclasses;
 
 import java.sql.*;
+
 import javaclasses.Agency;
 
 public class AgencyDAO {
@@ -19,10 +20,9 @@ public class AgencyDAO {
      */
     public boolean insertAgency(Agency agency) {
         boolean rowInserted = false;
-        
+
         // Χρησιμοποιούμε try-with-resources για αυτόματο κλείσιμο
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_AGENCY)) {
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_AGENCY)) {
 
             preparedStatement.setInt(1, agency.getUserId());
             preparedStatement.setString(2, agency.getBusinessName());
@@ -42,19 +42,18 @@ public class AgencyDAO {
      */
     public Agency getAgencyByUserId(int userId) {
         Agency agency = null;
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_AGENCY_BY_USER_ID)) {
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SELECT_AGENCY_BY_USER_ID)) {
 
             preparedStatement.setInt(1, userId);
-            
+
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
                     agency = new Agency(
-                        rs.getInt("agency_id"),
-                        rs.getInt("user_id"),
-                        rs.getString("business_name"),
-                        rs.getString("address"),
-                        rs.getString("phone") // Στη βάση φαίνεται ως phone ή phone_number, προσαρμόστε ανάλογα
+                            rs.getInt("agency_id"),
+                            rs.getInt("user_id"),
+                            rs.getString("business_name"),
+                            rs.getString("address"),
+                            rs.getString("phone") // Στη βάση φαίνεται ως phone ή phone_number, προσαρμόστε ανάλογα
                     );
                 }
             }

@@ -1,7 +1,9 @@
 package javaclasses;
+
 import java.sql.*;
 
 public class Trip_memberService {
+
     public boolean isMember(int tripId, int userId) throws Exception {
 
         DB db = new DB();
@@ -21,12 +23,17 @@ public class Trip_memberService {
             return rs.next();
 
         } finally {
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-            if (db != null) db.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (db != null) {
+                db.close();
+            }
         }
     }
-
 
     public void addMember(int tripId, int userId, boolean isOrganiser) throws Exception {
 
@@ -34,8 +41,8 @@ public class Trip_memberService {
         Connection con = null;
         PreparedStatement stmt = null;
 
-        String sql =
-            "INSERT INTO trip_members (trip_id, user_id, isOrganiser) VALUES (?, ?, ?)";
+        String sql
+                = "INSERT INTO trip_members (trip_id, user_id, isOrganiser) VALUES (?, ?, ?)";
 
         try {
             con = db.getConnection();
@@ -47,10 +54,15 @@ public class Trip_memberService {
             stmt.executeUpdate();
 
         } finally {
-            if (stmt != null) stmt.close();
-            if (db != null) db.close();
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (db != null) {
+                db.close();
+            }
         }
     }
+
     public int countMembers(int tripId) throws Exception {
 
         DB db = new DB();
@@ -70,11 +82,16 @@ public class Trip_memberService {
             return rs.getInt(1);
 
         } finally {
-            if (rs != null) rs.close();
-            if (stmt != null) stmt.close();
-            if (db != null) db.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (db != null) {
+                db.close();
+            }
         }
     }
 
-    
 }

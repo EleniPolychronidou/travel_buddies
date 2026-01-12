@@ -1,32 +1,31 @@
 package javaclasses;
+
 import java.sql.Date;
 
-
 public class Trip {
-    
+
     private int tripId;
     private int creatorId;
     private String title;
-	private String destination;
-	private Date startDate;
+    private String destination;
+    private Date startDate;
     private Date endDate;
     private String purpose;
-	private String description;
-	private double avgCost;
+    private String description;
+    private double avgCost;
     private String creatorUsername;
-    
 
     /**
      * Full constuctor
-     *   
+     *
      * @param title //Υποχρεωτικό πεδίο
      * @param destination //Υποχρεωτικό πεδίο
      */
-    public Trip(int tripId,int creatorId, String title, String destination, Date startDate, Date endDate,String purpose, String description, double avgCost, String creatorUsername) {        
+    public Trip(int tripId, int creatorId, String title, String destination, Date startDate, Date endDate, String purpose, String description, double avgCost, String creatorUsername) {
         if (title == null || destination == null) {
             throw new IllegalArgumentException("Title and Destination are mandatory fields.");
         }
-        
+
         this.tripId = tripId;
         this.creatorId = creatorId;
         this.title = title;
@@ -37,7 +36,7 @@ public class Trip {
         this.description = description;
         this.avgCost = avgCost;
         this.creatorUsername = creatorUsername;
-        
+
     }
 
     // Δεύτερος Constructor για δημιουργία από τη Φόρμα (χωρίς ID ακόμα)
@@ -77,7 +76,7 @@ public class Trip {
         this.startDate = startDate;
     }
 
-    public  Date getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
@@ -92,20 +91,23 @@ public class Trip {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public void setAvgCost(double avgCost) {
-        this.avgCost = avgCost;        
-    }  
+        this.avgCost = avgCost;
+    }
 
     public double getAvgCost() {
         return avgCost;
     }
+
     public int getCreatorId() {
         return creatorId;
     }
+
     public void setCreatorId(int creatorId) {
         this.creatorId = creatorId;
     }
+
     public String getPurpose() {
         return purpose;
     }
@@ -113,6 +115,7 @@ public class Trip {
     public void setPurpose(String purpose) {
         this.purpose = purpose;
     }
+
     public String getCreatorUsername() {
         return creatorUsername;
     }

@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- REMOVE the taglib line here --%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../styleforcss/style.css" />
-    <link rel="stylesheet" href="home.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <%-- Use standard JSP EL for your CSS paths --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styleforcss/style.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/main/home/home.css" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
     </style>
-
-        <title>Travel Buddy</title>
-  </head>
-  <body class="home-page">
+    <title>Travel Buddy</title>
+</head>
+<body class="home-page">
     <header class="header">
       <nav class="nav-container">
         <div class="title">Travel Buddy</div>

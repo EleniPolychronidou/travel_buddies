@@ -208,7 +208,7 @@
       <div class="tab-content" id="authTabsContent">
         <!-- LOGIN -->
         <div class="tab-pane fade show active" id="login" role="tabpanel">
-          <form id="loginForm" method="post" action="ismgroup4/main/register/loginController.jsp" novalidate>
+          <form id="loginForm" method="post" action="loginController.jsp" novalidate>
             <div class="mb-3 text-start">
               <label for="loginEmail" class="form-label">Email <span class="required">*</span></label>
               <input type="email" class="form-control" id="loginEmail" name="email" required>
@@ -225,7 +225,7 @@
 
         <!-- SIGNUP -->
         <div class="tab-pane fade" id="signup" role="tabpanel">
-          <form id="signupForm" method="post" action="/main/register/signupController.jsp" novalidate>
+          <form id="signupForm" method="post" action="registerController.jsp" novalidate>
              <div class="mb-3 text-start">
               <label class="form-label">Register as <span class="required">*</span></label>
               <select id="userType" name="userType" class="form-select" required>
