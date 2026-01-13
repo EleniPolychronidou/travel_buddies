@@ -8,8 +8,8 @@
 
  Integer agencyIdObj = (Integer) session.getAttribute("agencyId");
  if (agencyIdObj == null) {
-   request.setAttribute("error_message", "Only agencies can create trips. Please log in as an agency.");
-     request.getRequestDispatcher("../register/signUporIn.jsp").forward(request, response);
+   request.setAttribute("error_message", "Only agencies can create trips.");
+     request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
       return;
  }
 int agencyId = agencyIdObj.intValue();

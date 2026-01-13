@@ -2,6 +2,10 @@
 <%@ page errorPage="appError.jsp" %>
 <%@ page import="javaclasses.UserDAO" %>
 <%@ page import="javaclasses.User" %>
+<%@ page import="javaclasses.TravelerDAO" %>
+<%@ page import="javaclasses.AgencyDAO" %>
+<%@ page import="javaclasses.Agency" %>
+<%@ page import="javaclasses.Traveler" %>
 
 <%
 String email = request.getParameter("email");
@@ -27,6 +31,25 @@ try {
     }
 
     session.setAttribute("authenticated_user", user);
+        if ("AGENCY".equalsIgnoreCase(user.getRole())) {
+        AgencyDAO aDao = new AgencyDAO();
+        Agency agency = aDao.getAgencyByUserId(user.getUserId());
+
+        if (agency == null) {
+            throw new Exception("Ο λογαριασμός είναι AGENCY αλλά δεν βρέθηκε εγγραφή agency στη βάση.");
+        }
+
+        session.setAttribute("agencyId", agency.getAgencyId());
+    } else if ("TRAVELLER".equalsIgnoreCase(user.getRole())) {   // <-- ΔΙΟΡΘΩΣΗ (2 L)
+        TravelerDAO tDao = new TravelerDAO();
+        Traveler traveler = tDao.getTravelerByUserId(user.getUserId());
+
+        if (traveler == null) {
+            throw new Exception("Ο λογαριασμός είναι TRAVELLER αλλά δεν βρέθηκε εγγραφή traveler στη βάση.");
+        }
+
+        session.setAttribute("travelerId", traveler.getTravelerId());
+    }
     response.sendRedirect("../home/home.jsp");
     return;
 } catch(Exception e) {

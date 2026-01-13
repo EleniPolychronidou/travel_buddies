@@ -22,7 +22,7 @@
         <jsp:include page="../home/header.jsp" />
   </header>
     </header>
-     <% if (request.getAttribute("success_message") != null) { %>
+   <% if (request.getAttribute("success_message") != null) { %>
     <div class="success-message">
         <%= request.getAttribute("success_message") %>
     </div>
