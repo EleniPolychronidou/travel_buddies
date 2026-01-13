@@ -168,7 +168,7 @@
             <div class="row">		
 				<div class="col-xs-12">
 <%
-					if (request.getAttribute("error_essage") != null) {
+					if (request.getAttribute("error_message") != null) {
 %>
 						<div class="alert alert-danger">
 							<%=(String)request.getAttribute("error_message") %>
