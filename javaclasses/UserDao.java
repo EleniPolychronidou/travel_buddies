@@ -13,6 +13,7 @@ public class UserDAO {
     private static final String INSERT_USER = "INSERT INTO user (username, email, password, role) VALUES (?, ?, ?, ?)";
     private static final String CHECK_LOGIN = "SELECT * FROM user WHERE email = ? AND password = ?";
     private static final String CHECK_EMAIL = "SELECT user_id FROM user WHERE email = ?";
+    private static final String CHECK_USERNAME = "SELECT user_id FROM user WHERE username = ?";
 
     /**
      * Εγγραφή χρήστη. Επιστρέφει το ID που μόλις δημιουργήθηκε, ώστε να
@@ -97,4 +98,17 @@ public class UserDAO {
             return false;
         }
     }
+    public boolean usernameExists(String username) {
+    try (Connection connection = getConnection();
+         PreparedStatement preparedStatement = connection.prepareStatement(CHECK_USERNAME)) {
+
+        preparedStatement.setString(1, username);
+        ResultSet rs = preparedStatement.executeQuery();
+        return rs.next();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+    }
+}
 }

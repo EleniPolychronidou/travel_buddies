@@ -6,13 +6,13 @@
 
 <%
 
-//Integer agencyIdObj = (Integer) session.getAttribute("agencyId");
-//if (agencyIdObj == null) {
-//   request.setAttribute("error_message", "Only agencies can create trips. Please log in as an agency.");
- //   request.getRequestDispatcher("../login/login.jsp").forward(request, response);
-//    return;
-//}
-//int agencyId = agencyIdObj.intValue();
+ Integer agencyIdObj = (Integer) session.getAttribute("agencyId");
+ if (agencyIdObj == null) {
+   request.setAttribute("error_message", "Only agencies can create trips. Please log in as an agency.");
+     request.getRequestDispatcher("../register/signUporIn.jsp").forward(request, response);
+      return;
+ }
+int agencyId = agencyIdObj.intValue();
 
 String title = request.getParameter("title");
 String destination = request.getParameter("destination");
@@ -38,10 +38,7 @@ if (avgCostStr != null && !avgCostStr.isEmpty()) {
 }
 
 
-Integer agencyId = (Integer) session.getAttribute("agencyId");
-if (agencyId == null) {
-    agencyId = 1; // agency_id=1 mexri na ftiaxtei to login
-}
+
 
 try {
     TripService service = new TripService();

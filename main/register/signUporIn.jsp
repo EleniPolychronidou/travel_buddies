@@ -168,10 +168,10 @@
             <div class="row">		
 				<div class="col-xs-12">
 <%
-					if (request.getAttribute("errorMessage") != null) {
+					if (request.getAttribute("error_essage") != null) {
 %>
 						<div class="alert alert-danger">
-							<%=(String)request.getAttribute("errorMessage") %>
+							<%=(String)request.getAttribute("error_message") %>
 						</div><%
 					}
 %>	
@@ -249,6 +249,10 @@
               <input type="text" class="form-control" id="name" name="lastname" required>
             </div>
             <div class="mb-3 text-start">
+                <label for="username" class="form-label">Username <span class="required">*</span></label>
+                <input type="text" class="form-control" id="username" name="username">
+              </div>
+            <div class="mb-3 text-start">
               <label for="birthDate" class="form-label">Date of Birth <span class="required">*</span></label>
               <input type="date" class="form-control" id="birthDate" name="birthDate" required>
             </div>
@@ -289,6 +293,10 @@
               <div class="mb-3 text-start">
                 <label for="businessName" class="form-label">Business Name <span class="required">*</span></label>
                 <input type="text" class="form-control" id="businessName" name="businessName">
+              </div>
+              <div class="mb-3 text-start">
+                <label for="username" class="form-label">Username <span class="required">*</span></label>
+                <input type="text" class="form-control" id="username" name="username">
               </div>
 
               <div class="mb-3 text-start">
