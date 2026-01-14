@@ -4,6 +4,7 @@
 <%@ page import="javaclasses.Message" %>
 <%@ page import="javaclasses.MessageDao" %>
 <%@ page import="javaclasses.Trip_memberService" %>
+<%@ page import="javaclasses.UserDAO" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -98,6 +99,8 @@ try {
   <div class="messages" id="messagesContainer">
     <% 
     if (messages != null && !messages.isEmpty()) {
+        UserDAO uDao = new UserDAO();
+
         for (Message msg : messages) {
             boolean isMine = (msg.getSender_id() == user.getUserId());
             String content = msg.getContent() != null ? msg.getContent() : "";
@@ -107,11 +110,15 @@ try {
                 if (dateStr.length() > 16) {
                     dateStr = dateStr.substring(0, 16);
                 }
+                
             }
+    String senderUsername = isMine ? "You" : uDao.getUsernameById(msg.getSender_id());
+    if (senderUsername == null) senderUsername = "Unknown";
     %>
       <div class="msg <%= isMine ? "mine" : "theirs" %>">
         <div><%= content %></div>
         <div class="meta"><%= dateStr %></div>
+        <div class="meta"><%= senderUsername %></div>
       </div>
       <div class="clearfix"></div>
     <% 

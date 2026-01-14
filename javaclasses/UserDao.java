@@ -111,4 +111,26 @@ public class UserDAO {
         return false;
     }
 }
+public String getUsernameById(int userId) {
+    String username = null;
+
+    String sql = "SELECT username FROM user WHERE user_id = ?";
+
+    try (Connection conn = getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setInt(1, userId);
+
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                username = rs.getString("username");
+            }
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return username;
+}
 }
