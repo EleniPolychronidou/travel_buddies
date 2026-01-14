@@ -1,4 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%
+    if (session == null || session.getAttribute("user_id") == null) {
+        response.sendRedirect(request.getContextPath() + "/register/login.jsp");
+        return;
+    }
+%>
 
 <!DOCTYPE html>
 <html lang="en">
