@@ -31,8 +31,7 @@
           </ul>
         </div>
         <div class="auth">
-          <div class="login-button"><a href="../register/signUporIn.jsp">Log In</a></div>
-          <div class="signup-button"><a href="../register/signUporIn.jsp">Sign Up</a></div>
+          <div class="login-button"><a href="../register/signUporIn.jsp">Log In/ Sign up</a></div>
         </div>
       </nav>
     </header>
