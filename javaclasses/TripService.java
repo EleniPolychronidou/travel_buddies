@@ -245,15 +245,17 @@ public class TripService {
 
     private Trip_memberService memberService = new Trip_memberService();
 
-    public int joinTrip(int tripId, int userId) throws Exception {
-
+    public boolean joinTrip(int tripId, int userId) throws Exception {
         if (memberService.isMember(tripId, userId)) {
-            return memberService.countMembers(tripId);
+            return false; 
         }
-
         memberService.addMember(tripId, userId, false);
+        return true;
+    }       
 
+    public int getMembersCount(int tripId) throws Exception {
         return memberService.countMembers(tripId);
     }
+
 
 }

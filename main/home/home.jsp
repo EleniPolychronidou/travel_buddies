@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8" />
     <%-- Use standard JSP EL for your CSS paths --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styleforcss/style.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/main/home/home.css" />
-    
+    <link rel="stylesheet" href="../home/home.css" />
+    <link rel="stylesheet" href="../styleforcss/style.css" />
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
@@ -40,6 +40,17 @@
         </div>
       </nav>
     </header>
+
+<div class="col-xs-12">
+<%
+					if (request.getAttribute("error_message") != null) {
+%>
+						<div class="alert alert-danger">
+							<%=(String)request.getAttribute("error_message") %>
+						</div><%
+					}
+%>
+</div>
     
 <!-- Hero Section -->
 <section class="hero">

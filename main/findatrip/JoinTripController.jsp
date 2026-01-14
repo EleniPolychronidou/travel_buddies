@@ -1,99 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
-<%@ page import="javaclasses.Trip" %>
 <%@ page import="javaclasses.TripService" %>
-
-<!DOCTYPE html>
-<html lang="el">
-<head>
-    <meta charset="UTF-8">
-    <title>Join Group</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f3f3f3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .box {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
-            max-width: 450px;
-        }
-        h2 { color: #546D79; }
-        .btn {
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #546D79;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-    </style>
-</head>
-
-<body>
+<%@ page import="javaclasses.User" %>
 
 <%
+String tripIdStr = request.getParameter("tripId");
+int tripId = -1;
+
 try {
-    Integer userId = (Integer) session.getAttribute("userId");
-     if (userId == null) {
-        userId = 1; // προσωρινός χρήστης
-        session.setAttribute("userId", userId);
+    if (tripIdStr == null || tripIdStr.trim().isEmpty()) {
+        request.setAttribute("error_message", "Missing tripId.");
+        request.getRequestDispatcher("viewdetails.jsp").forward(request, response);
+        return;
     }
 
+    tripId = Integer.parseInt(tripIdStr);
 
-    /*if (userId == null) {
-        throw new Exception("You must log in to join a group");
-    } Οταν φτιάξουμε το log in και σβηνω και το απο πάνω */
+    User user = (User) session.getAttribute("authenticated_user");
+    if (user == null) {
+        request.setAttribute("error_message", "You must log in to join a trip.");
+        request.getRequestDispatcher("viewdetails.jsp?tripId=" + tripId).forward(request, response);
+        return;
+    }
 
-    int tripId = Integer.parseInt(request.getParameter("tripId"));
+    int userId = user.getUserId();
 
+    Traveler traveler = (Traveler) session.getAttribute("traveler");
+    if (travelerId == null) {
+        request.setAttribute("error_message", "Only travelers can join trips.");
+        request.getRequestDispatcher("viewdetails.jsp?tripId=" + tripId).forward(request, response);
+        return;
+    }
 
     TripService service = new TripService();
-    int membersCount = service.joinTrip(tripId, userId)+1;
-    Trip trip = service.findTripById(tripId);
+    boolean joinedNow = service.joinTrip(tripId, userId);
 
-    
-%>
+    request.setAttribute("successMessage",
+        joinedNow ? "You successfully joined the trip!" : "You are already a member of this trip."
+    );
 
-<div class="box">
-    <h2>You succesfully joined the trip!</h2>
+    request.getRequestDispatcher("viewdetails.jsp?tripId=" + tripId).forward(request, response);
+    return;
 
-    
-    <p>Joined trip: <strong><%=trip.getTitle()%></strong></p>
-    <p>Now the trip has <strong><%=membersCount%></strong> people.</p>
-
-    <a class="btn"
-       href="../findatrip/viewdetails.jsp?tripId=<%= trip.getTripId() %>">
-        Back
-    </a>
-    <a class="btn">
-        Chat
-    </a>
-</div>
-
-<%
 } catch (Exception e) {
-%>
-
-<div class="box">
-    <h2> Error</h2>
-    <p><%= e.getMessage() %></p>
-    <a class="btn" href="<%=request.getContextPath()%>/login.jsp">Login</a>
-</div>
-
-<%
+    request.setAttribute("error_message", "Could not join the trip: " + e.getMessage());
+    if (tripId != -1) {
+        request.getRequestDispatcher("viewdetails.jsp?tripId=" + tripId).forward(request, response);
+    } else {
+        request.getRequestDispatcher("viewdetails.jsp").forward(request, response);
+    }
+    return;
 }
 %>
-
-</body>
-</html>

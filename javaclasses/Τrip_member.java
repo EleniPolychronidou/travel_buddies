@@ -2,47 +2,53 @@ package javaclasses;
 
 public class Τrip_member {
 
+    private int trip_memberId;   // auto_increment (δεν μπαίνει στον constructor)
     private int tripId;
-    private int trip_member_id;
-    private int user_id;
-    private boolean isOrganizer;
+    private int userId;
+    private boolean organiser;
 
-    public Τrip_member(int tripId, int trip_member_id, int user_id, boolean isOrganizer) {
+    // Constructor για INSERT (χωρίς id)
+    public Τrip_member(int tripId, int userId, boolean organiser) {
         this.tripId = tripId;
-        this.trip_member_id = trip_member_id;
-        this.user_id = user_id;
-        this.isOrganizer = isOrganizer;
+        this.userId = userId;
+        this.organiser = organiser;
     }
+
+    // Optional constructor (αν θες object από SELECT)
+    public Τrip_member(int tripMemberId, int tripId, int userId, boolean organiser) {
+        this.trip_memberId = tripMemberId;
+        this.tripId = tripId;
+        this.userId = userId;
+        this.organiser = organiser;
+    }
+
+    public int getTripMemberId() {
+        return trip_memberId;
+
+    }
+    public void setTripMemberId(int trip_memberId) {
+        this.trip_memberId = trip_memberId;
+    }
+
 
     public int getTripId() {
         return tripId;
     }
-
     public void setTripId(int tripId) {
         this.tripId = tripId;
     }
 
-    public int getTrip_member_id() {
-        return trip_member_id;
+    public int getUserId() {
+        return userId;
+    }
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public void setTrip_member_id(int trip_member_id) {
-        this.trip_member_id = trip_member_id;
+    public boolean isOrganiser() {
+        return organiser;
     }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public boolean getIsOrganizer() {
-        return isOrganizer;
-    }
-
-    public void setIsOrganizer(boolean isOrganizer) {
-        this.isOrganizer = isOrganizer;
+    public void setOrganiser(boolean organiser) {
+        this.organiser = organiser;
     }
 }

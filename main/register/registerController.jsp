@@ -89,7 +89,7 @@
 <%
     return;
 
-    } catch(SQLIntegrityConstraintViolationException e) {
+ } catch(SQLIntegrityConstraintViolationException e) {
         request.setAttribute("error_message", "User already exists.");
 %>
     <jsp:forward page="signUporIn.jsp"/>

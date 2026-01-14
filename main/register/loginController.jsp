@@ -40,7 +40,7 @@ try {
         }
 
         session.setAttribute("agencyId", agency.getAgencyId());
-    } else if ("TRAVELLER".equalsIgnoreCase(user.getRole())) {   // <-- ΔΙΟΡΘΩΣΗ (2 L)
+    } else if ("TRAVELER".equalsIgnoreCase(user.getRole())) {   // <-- ΔΙΟΡΘΩΣΗ (2 L)
         TravelerDAO tDao = new TravelerDAO();
         Traveler traveler = tDao.getTravelerByUserId(user.getUserId());
 
