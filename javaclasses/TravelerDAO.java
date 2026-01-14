@@ -4,9 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javaclasses.DB;
-import javaclasses.Traveler;
-
 public class TravelerDAO {
 
     /**
@@ -22,10 +19,10 @@ public class TravelerDAO {
     }
 
     // SQL Queries
-    private static final String INSERT_TRAVELER = "INSERT INTO traveler (user_id, gender, birth_date, interests, budget) VALUES (?, ?, ?, ?, ?)";
-    private static final String SELECT_TRAVELER_BY_ID = "SELECT traveler_id, user_id, gender, birth_date, interests, budget FROM traveler WHERE traveler_id=?";
-    private static final String SELECT_ALL_TRAVELERS = "SELECT traveler_id, user_id, gender, birth_date, interests, budget FROM traveler";
-    private static final String UPDATE_TRAVELER = "UPDATE traveler SET user_id=?, gender=?, birth_date=?, interests=?, budget=? WHERE traveler_id=?";
+    private static final String INSERT_TRAVELER = "INSERT INTO traveler (user_id,first_name,last_name, gender, birth_date, interests) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String SELECT_TRAVELER_BY_ID = "SELECT traveler_id, user_id, first_name, last_name, gender, birth_date, interests FROM traveler WHERE traveler_id=?";
+    private static final String SELECT_ALL_TRAVELERS = "SELECT traveler_id, user_id, first_name, last_name, gender, birth_date, interests FROM traveler";
+    private static final String UPDATE_TRAVELER = "UPDATE traveler SET user_id=?, first_name=?, last_name=?, gender=?, birth_date=?, interests=? WHERE traveler_id=?";
     private static final String DELETE_TRAVELER = "DELETE FROM traveler WHERE traveler_id = ?";
 
     private static final String SELECT_TRAVELER_BY_USER_ID = "SELECT * FROM traveler WHERE user_id=?";
@@ -33,22 +30,36 @@ public class TravelerDAO {
     /**
      * Εισαγωγή νέου Traveler
      */
-    public boolean insertTraveler(Traveler traveler) {
-        boolean rowInserted = false;
-        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TRAVELER)) {
+    public int insertTraveler(Traveler traveler) {
+        int generatedId = -1; // Αρχικοποίηση όπως στη registerUser
+
+        // Προσθήκη Statement.RETURN_GENERATED_KEYS για να πάρουμε το ID
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TRAVELER, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setInt(1, traveler.getUserId());
-            preparedStatement.setString(2, traveler.getGender());
-            preparedStatement.setDate(3, traveler.getBirthDate());
-            preparedStatement.setString(4, traveler.getInterests());
+            preparedStatement.setString(2, traveler.getFirstName());
+            preparedStatement.setString(3, traveler.getLastName());
+            preparedStatement.setString(4, traveler.getGender());
+            preparedStatement.setDate(5, (java.sql.Date) traveler.getBirthDate());
+            preparedStatement.setString(6, traveler.getInterests());
 
-            int rowAffected = preparedStatement.executeUpdate();
-            rowInserted = rowAffected > 0;
+            int affectedRows = preparedStatement.executeUpdate();
 
+            if (affectedRows > 0) {
+                try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        generatedId = rs.getInt(1); // Παίρνουμε το traveler_id
+                        traveler.setTravelerId(generatedId); // Ενημερώνουμε το αντικείμενο traveler
+                    }
+                }
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("--- SQL ERROR START ---");
+            e.printStackTrace(); // Αυτό θα τυπώσει το κόκκινο κείμενο στην κονσόλα
+            System.out.println("--- SQL ERROR END ---");
         }
-        return rowInserted;
+
+        return generatedId; // Επιστρέφει το ID ή -1 αν απέτυχε
     }
 
     /**
@@ -65,6 +76,8 @@ public class TravelerDAO {
                     traveler = new Traveler(
                             rs.getInt("traveler_id"),
                             rs.getInt("user_id"),
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
                             rs.getString("gender"),
                             rs.getDate("birth_date"),
                             rs.getString("interests")
@@ -90,6 +103,8 @@ public class TravelerDAO {
                 Traveler traveler = new Traveler(
                         rs.getInt("traveler_id"),
                         rs.getInt("user_id"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
                         rs.getString("gender"),
                         rs.getDate("birth_date"),
                         rs.getString("interests")
@@ -153,6 +168,8 @@ public class TravelerDAO {
                     traveler = new Traveler(
                             rs.getInt("traveler_id"),
                             rs.getInt("user_id"),
+                            rs.getString("first_name"),
+                            rs.getString("last_name"),
                             rs.getString("gender"),
                             rs.getDate("birth_date"),
                             rs.getString("interests")

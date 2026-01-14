@@ -6,6 +6,8 @@ public class Traveler {
 
     private int travelerId;
     private int userId;
+    private String firstName;
+    private String lastName;
     private String gender;
     private Date birthDate;
     private String interests;
@@ -15,13 +17,17 @@ public class Traveler {
      *
      * @param travelerId
      * @param userId
+     * @param firstName
+     * @param lastName
      * @param gender
      * @param birthDate
      * @param interests
      */
     // travelers που ήδη υπάρχουν
-    public Traveler(int userId, String gender, Date birthDate, String interests) {
+    public Traveler(int userId, String firstName, String lastName, String gender, Date birthDate, String interests) {
         this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
         this.birthDate = birthDate;
         this.interests = interests;
@@ -29,9 +35,11 @@ public class Traveler {
     }
 
     // καινούργιοι travelers
-    public Traveler(int travelerId, int userId, String gender, Date birthDate, String interests) {
+    public Traveler(int travelerId, int userId, String firstName, String lastName, String gender, Date birthDate, String interests) {
         this.travelerId = travelerId;
         this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.gender = gender;
         this.birthDate = birthDate;
         this.interests = interests;
@@ -51,6 +59,22 @@ public class Traveler {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getGender() {

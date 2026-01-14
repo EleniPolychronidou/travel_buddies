@@ -225,107 +225,101 @@
 
         <!-- SIGNUP -->
         <div class="tab-pane fade" id="signup" role="tabpanel">
-          <form id="signupForm" method="post" action="registerController.jsp" novalidate>
-             <div class="mb-3 text-start">
-              <label class="form-label">Register as <span class="required">*</span></label>
-              <select id="userType" name="userType" class="form-select" required>
+    <form id="signupForm" method="post" action="registerController.jsp" novalidate>
+        
+        <div class="mb-3 text-start">
+            <label class="form-label">Register as <span class="required">*</span></label>
+            <select id="userType" name="userType" class="form-select" required>
                 <option value="" selected disabled>Choose type</option>
                 <option value="traveler">Traveler</option>
                 <option value="agency">Agency</option>
-              </select>
-            </div>
-             <div class="mb-3 text-start">
-              <label for="signupEmail" class="form-label">Email <span class="required">*</span></label>
-              <input type="email" class="form-control" id="signupEmail" name="email" required>
-            </div>
+            </select>
+        </div>
 
-            <div id="travelerFields" class="traveler-fields" style="display:none;">
+        <div class="mb-3 text-start">
+            <label for="signupEmail" class="form-label">Email <span class="required">*</span></label>
+            <input type="email" class="form-control" id="signupEmail" name="email" required>
+        </div>
+
+        <div class="mb-3 text-start">
+            <label for="username" class="form-label">Username <span class="required">*</span></label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+
+        <div id="travelerFields" class="traveler-fields" style="display:none;">
             <div class="mb-3 text-start">
-              <label for="name" class="form-label">First Name <span class="required">*</span></label>
-              <input type="text" class="form-control" id="name" name="firstname" required>
+                <label for="firstname" class="form-label">First Name <span class="required">*</span></label>
+                <input type="text" class="form-control" id="firstname" name="firstname">
             </div>
             <div class="mb-3 text-start">
-              <label for="Surname" class="form-label">Last Name <span class="required">*</span></label>
-              <input type="text" class="form-control" id="name" name="lastname" required>
+                <label for="lastname" class="form-label">Last Name <span class="required">*</span></label>
+                <input type="text" class="form-control" id="lastname" name="lastname">
             </div>
             <div class="mb-3 text-start">
-                <label for="username" class="form-label">Username <span class="required">*</span></label>
-                <input type="text" class="form-control" id="username" name="username">
-              </div>
-            <div class="mb-3 text-start">
-              <label for="birthDate" class="form-label">Date of Birth <span class="required">*</span></label>
-              <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+                <label for="birthDate" class="form-label">Date of Birth <span class="required">*</span></label>
+                <input type="date" class="form-control" id="birthDate" name="birthDate">
             </div>
-            
             <div class="mb-3 text-start">
-              <label for="gender" class="form-label">Gender <span class="required">*</span></label>
-              <select id="gender" name="gender" class="form-select" required>
-                <option value="" disabled selected>Select your gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-                <option value="prefer_not">Prefer not to say</option>
+                <label for="gender" class="form-label">Gender <span class="required">*</span></label>
+                <select id="gender" name="gender" class="form-select">
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="prefer_not">Prefer not to say</option>
                 </select>
             </div>
-
-            <!-- Ενδιαφέροντα (με click επιλογές) -->
             <div class="mb-3 text-start">
-              <label class="form-label">Interests</label>
-              <div class="interests-list">
-                <div class="interest-option">Fitness &amp; Sports</div>
-                <div class="interest-option">Dancing</div>
-                <div class="interest-option">History</div>
-                <div class="interest-option">Movies</div>
-                <div class="interest-option">Coding</div>
-                <div class="interest-option">Music</div>
-                <div class="interest-option">Theater</div>
-                <div class="interest-option">Foodie</div>
-                <div class="interest-option">Culture</div>
-                <div class="interest-option">Parties</div>
-                <div class="interest-option">Reading</div>
-                <div class="interest-option">Cars</div>
-                <div class="interest-option">Fashion</div>
-              </div>
-              <input type="hidden" id="interestsInput" name="interests">
+                <label class="form-label">Interests</label>
+                <div class="interests-list">
+                    <div class="interest-option">Fitness &amp; Sports</div>
+                    <div class="interest-option">Dancing</div>
+                    <div class="interest-option">History</div>
+                    <div class="interest-option">Movies</div>
+                    <div class="interest-option">Coding</div>
+                    <div class="interest-option">Music</div>
+                    <div class="interest-option">Theater</div>
+                    <div class="interest-option">Foodie</div>
+                    <div class="interest-option">Culture</div>
+                    <div class="interest-option">Parties</div>
+                    <div class="interest-option">Reading</div>
+                </div>
+                <input type="hidden" id="interestsInput" name="interests">
             </div>
-            </div>
-            <div id="agencyFields" class="agency-fields" style="display:none;">
-              <div class="mb-3 text-start">
+        </div>
+
+        <div id="agencyFields" class="agency-fields" style="display:none;">
+            <div class="mb-3 text-start">
                 <label for="businessName" class="form-label">Business Name <span class="required">*</span></label>
                 <input type="text" class="form-control" id="businessName" name="businessName">
-              </div>
-              <div class="mb-3 text-start">
-                <label for="username" class="form-label">Username <span class="required">*</span></label>
-                <input type="text" class="form-control" id="username" name="username">
-              </div>
-
-              <div class="mb-3 text-start">
+            </div>
+            <div class="mb-3 text-start">
                 <label for="address" class="form-label">Address <span class="required">*</span></label>
                 <input type="text" class="form-control" id="address" name="address">
-              </div>
-
-              <div class="mb-3 text-start">
+            </div>
+            <div class="mb-3 text-start">
                 <label for="phone" class="form-label">Phone <span class="required">*</span></label>
                 <input type="tel" class="form-control" id="phone" name="phone">
-              </div>
-</div>
-              <div class="mb-3 text-start">
-              <label for="signupPassword" class="form-label">Password <span class="required">*</span></label>
-              <input type="password" class="form-control" id="signupPassword" name="password" required minlength="6">
             </div>
+        </div>
 
-            <div class="mb-3 text-start">
-              <label for="signupPasswordConfirm" class="form-label">Password Confirmation <span class="required">*</span></label>
-              <input type="password" class="form-control" id="signupPasswordConfirm" required minlength="6">
-            </div>
+        <div class="mb-3 text-start">
+            <label for="signupPassword" class="form-label">Password <span class="required">*</span></label>
+            <input type="password" class="form-control" id="signupPassword" name="password" required minlength="6">
+        </div>
+        <div class="mb-3 text-start">
+            <label for="signupPasswordConfirm" class="form-label">Password Confirmation <span class="required">*</span></label>
+            <input type="password" class="form-control" id="signupPasswordConfirm" required minlength="6">
+        </div>
 
-            <button type="submit" class="btn btn-success w-100">Sign Up</button>
+        <button type="submit" class="btn btn-success w-100">Sign Up</button>
+
+        <div class="mt-4 text-muted small text-center">
+            Already a member?
+            <a href="#" class="link-primary" onclick="document.querySelector('#login-tab').click(); return false;">Sign In</a>.
+        </div>
+    </form>
 </div>
-            <div class="mt-4 text-muted small">
-              Already a member?
-              <a href="#" class="link-primary" onclick="document.querySelector('#login-tab').click(); return false;">Sign In</a>.
-            </div>
-           
             </div>
           </form>
         </div>
