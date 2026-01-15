@@ -34,10 +34,23 @@
             </li>
           </ul>
         </div>
-        <div class="auth">
-          <div class="login-button"><a href="../register/signUporIn.jsp">Log In</a></div>
-          <div class="signup-button"><a href="../register/signUporIn.jsp">Sign Up</a></div>
-        </div>
+<div class="auth">
+  <% 
+    // Match the key used in your login logic
+    Object userObj = session.getAttribute("authenticated_user"); 
+    
+    if (userObj == null) { 
+  %>
+      <div class="login-button"><a href="../register/signUporIn.jsp">Log In</a></div>
+      <div class="signup-button"><a href="../register/signUporIn.jsp">Sign Up</a></div>
+  <% 
+    } else { 
+  %>
+      <div class="login-button"><a href="../logout/logoutservlet.jsp">Log Out</a></div>
+  <% 
+    } 
+  %>
+</div>
       </nav>
     </header>
 
