@@ -18,7 +18,7 @@ public class AgencyDAO {
      */
     public int insertAgency(Agency agency) {
         int generatedId = -1;
-        String INSERT_AGENCY = "INSERT INTO agency (userId, businessName, address, phone) VALUES (?, ?, ?, ?)";
+        String INSERT_AGENCY = "INSERT INTO agency (user_id, business_name, address, phone) VALUES (?, ?, ?, ?)";
 
     // ΠΡΟΣΟΧΗ: Το try ξεκινάει ΠΡΙΝ το getConnection()
     try {
@@ -26,10 +26,10 @@ public class AgencyDAO {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_AGENCY, Statement.RETURN_GENERATED_KEYS)) {
 
-            preparedStatement.setInt(1, agency.getUserId());
-            preparedStatement.setString(2, agency.getBusinessName());
-            preparedStatement.setString(3, agency.getAddress());
-            preparedStatement.setString(4, agency.getPhone());
+                preparedStatement.setInt(1, agency.getUserId());
+                preparedStatement.setString(2, agency.getBusinessName());
+                preparedStatement.setString(3, agency.getAddress());
+                preparedStatement.setString(4, agency.getPhone());
 
             int affectedRows = preparedStatement.executeUpdate();
 
