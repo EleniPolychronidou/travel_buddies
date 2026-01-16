@@ -31,7 +31,19 @@
           </ul>
         </div>
         <div class="auth">
-          <div class="login-button"><a href="../register/signUporIn.jsp">Log In/ Sign up</a></div>
+          <% 
+            Object userObj = session.getAttribute("authenticated_user"); 
+            
+            if (userObj == null) { 
+          %>
+              <div class="login-button"><a href="../register/signUporIn.jsp">Sign In/Sign Up</a></div>
+          <% 
+            } else { 
+          %>
+              <div class="login-button"><a href="../logout/logoutservlet.jsp">Log Out</a></div>
+          <% 
+            } 
+          %>
         </div>
       </nav>
     </header>

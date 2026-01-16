@@ -6,7 +6,7 @@
 
 
 <%
-    // 1. Λήψη παραμέτρων
+ 
     String type        = request.getParameter("userType");
     String firstname   = request.getParameter("firstname");
     String lastname    = request.getParameter("lastname");
@@ -20,13 +20,13 @@
     String password    = request.getParameter("password");
     String email       = request.getParameter("email"); 
 
-    // 2. Μετατροπή ημερομηνίας
+  
     java.sql.Date birthDate = null;
     if (bday != null && !bday.isEmpty()) {
         birthDate = java.sql.Date.valueOf(bday); 
     }
 
-    // 3. Βασικός έλεγχος
+
     if (type == null || password == null || email == null) {
         throw new Exception("Required parameters missing.");
     }
@@ -34,15 +34,15 @@
     try {
         UserDAO uDAO = new UserDAO();
 
-        // Έλεγχος αν υπάρχει ήδη το email ή το username
+    
         if (uDAO.emailExists(email)) {
-            request.setAttribute("error_message", "Το email χρησιμοποιείται ήδη.");
+            request.setAttribute("error_message", "This email is already used.");
             request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
             return;
         }
 
         if (uDAO.usernameExists(username)) {
-            request.setAttribute("error_message", "Το username χρησιμοποιείται ήδη.");
+            request.setAttribute("error_message", "This username is already used.");
             request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
             return;
         }
@@ -50,9 +50,9 @@
         String userRole = type.toUpperCase();
         User user = new User(username, email, password, userRole);
         
-        // Εγγραφή βασικού χρήστη
+ 
         int newUserId = uDAO.registerUser(user);
-        // Εγγραφή εξειδικευμένου χρήστη (Traveler ή Agency)
+
         if (userRole.equalsIgnoreCase("TRAVELER")) {
             TravelerDAO tDAO = new TravelerDAO();
             Traveler newTraveler = new Traveler(newUserId, firstname, lastname, gender, birthDate, interests);
@@ -63,7 +63,7 @@
             aDAO.insertAgency(agency);
         }
 
-        // Αν όλα πήγαν καλά
+
         request.setAttribute("successMessage", "User with email " + email + " saved successfully!");
         request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
 

@@ -25,7 +25,7 @@ try {
     User user = uDao.authenticate(email.trim(), password);
 
     if (user == null) {
-        request.setAttribute("error_message", "Λάθος email ή κωδικός.");
+        request.setAttribute("error_message", "Wrong email or password.");
         request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
         return;
     }
@@ -36,16 +36,16 @@ try {
         Agency agency = aDao.getAgencyByUserId(user.getUserId());
 
         if (agency == null) {
-            throw new Exception("Ο λογαριασμός είναι AGENCY αλλά δεν βρέθηκε εγγραφή agency στη βάση.");
+            throw new Exception("The account is AGENCY but no agency record was found in the database.");
         }
 
         session.setAttribute("agencyId", agency.getAgencyId());
-    } else if ("TRAVELER".equalsIgnoreCase(user.getRole())) {   // <-- ΔΙΟΡΘΩΣΗ (2 L)
+    } else if ("TRAVELER".equalsIgnoreCase(user.getRole())) {   
         TravelerDAO tDao = new TravelerDAO();
         Traveler traveler = tDao.getTravelerByUserId(user.getUserId());
 
         if (traveler == null) {
-            throw new Exception("Ο λογαριασμός είναι TRAVELLER αλλά δεν βρέθηκε εγγραφή traveler στη βάση.");
+            throw new Exception("The account is TRAVELER but no traveler record was found in the database.");
         }
 
         session.setAttribute("travelerId", traveler.getTravelerId());
