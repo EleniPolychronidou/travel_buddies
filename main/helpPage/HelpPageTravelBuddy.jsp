@@ -45,7 +45,7 @@
       <div class="answer">You can write your issue in the complaint box below.</div>
     </div>
 
-    <a class="download-link" href="odigies_xrisis.docx" download>Download full user instructions</a>
+    //<a class="download-link" href="odigies_xrisis.docx" download>Download full user instructions</a>
 
     <div class="complaint-box">
       <h3>Complaint Box</h3>
