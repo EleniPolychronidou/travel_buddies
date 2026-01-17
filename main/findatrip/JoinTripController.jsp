@@ -44,10 +44,11 @@ try {
 } catch (Exception e) {
     request.setAttribute("error_message", "Could not join the trip: " + e.getMessage());
     if (tripId != -1) {
-        request.getRequestDispatcher("viewdetails.jsp?tripId=" + tripId).forward(request, response);
+        request.getRequestDispatcher("viewdetails.jsp?tripId=" + tripId).forward(request,response);
     } else {
         request.getRequestDispatcher("viewdetails.jsp").forward(request, response);
     }
     return;
 }
+
 %>
