@@ -32,12 +32,12 @@
 
     <div class="faq">
       <button class="question">How do I create a trip?</button>
-      <div class="answer">Fill in the required details in the Make a Trip form. Once published, the trip becomes visible to the community.</div>
+      <div class="answer">Fill in the required details in the Organise a Trip Page.To create a trip, you must be logged in. as an agency. Once published, the trip becomes visible to the community.</div>
     </div>
 
     <div class="faq">
-      <button class="question">How can I report a user action?</button>
-      <div class="answer">You can report inappropriate actions through the report section in your account.</div>
+      <button class="question">How can I Join a Trip?</button>
+      <div class="answer">You can join a trip by navigating to the trip details page and clicking the "Join Trip" button. To join a trip, you must be logged in as a traveler</div>
     </div>
 
     <div class="faq">
