@@ -102,6 +102,7 @@
 
     if (!errors.isEmpty()) {
         request.setAttribute("error_message", errors);
+        request.setAttribute("show_signup", true);
         request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
         return;
     }
@@ -113,6 +114,7 @@
         } catch (IllegalArgumentException e) {
             errors.add("Invalid date format!");
             request.setAttribute("error_message", errors);
+            request.setAttribute("show_signup", true);
             request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
             return;
         }
@@ -124,6 +126,7 @@
         if (uDAO.emailExists(email)) {
             errors.add("This email is already in use.");
             request.setAttribute("error_message", errors);
+            request.setAttribute("show_signup", true);
             request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
             return;
         }
@@ -131,6 +134,7 @@
         if (uDAO.usernameExists(username)) {
             errors.add("This username is already taken.");
             request.setAttribute("error_message", errors);
+            request.setAttribute("show_signup", true);
             request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
             return;
         }
@@ -151,16 +155,19 @@
         }
 
         request.setAttribute("successMessage", "User with email " + email + " registered successfully!");
+        request.setAttribute("show_signup", true);
         request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
 
     } catch (SQLIntegrityConstraintViolationException e) {
         errors.add("User already exists (Constraint Violation).");
         request.setAttribute("error_message", errors);
+        request.setAttribute("show_signup", true);
         request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
     } catch (Exception e) {
         e.printStackTrace();
         errors.add("Error: " + e.getMessage());
         request.setAttribute("error_message", errors);
+        request.setAttribute("show_signup", true);
         request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
     }
 %>

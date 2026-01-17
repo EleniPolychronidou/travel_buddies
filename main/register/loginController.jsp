@@ -17,7 +17,7 @@ try {
     UserDAO uDao = new UserDAO();
 
     if (email == null || password == null || email.trim().isEmpty() || password.isEmpty()) {
-        request.setAttribute("error_message", "Βάλε email και κωδικό.");
+        request.setAttribute("error_messages", " Put email and password.");
         request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
         return;
     }
@@ -25,7 +25,7 @@ try {
     User user = uDao.authenticate(email.trim(), password);
 
     if (user == null) {
-        request.setAttribute("error_message", "Wrong email or password.");
+        request.setAttribute("error_messages", "Wrong email or password.");
         request.getRequestDispatcher("signUporIn.jsp").forward(request, response);
         return;
     }
@@ -53,7 +53,7 @@ try {
     response.sendRedirect("../home/home.jsp");
     return;
 } catch(Exception e) {
-    request.setAttribute("error_message", e.getMessage());
+    request.setAttribute("error_messages", e.getMessage());
     
     %>
     <jsp:forward page="signUporIn.jsp" />

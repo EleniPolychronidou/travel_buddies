@@ -165,10 +165,10 @@
 <body>
 
 		
-
-    
-
-    
+<%
+Boolean showSignup = (Boolean) request.getAttribute("show_signup");
+boolean isSignup = (showSignup != null && showSignup);
+%>
 
     <!--Είναι φτωχικό αλλά μου έφαγαν την ζωή και όλες τις δωρεάν προσπάθειες του τσατ αυτά τα κουμπιά-->
   <div class="container-wrapper">
@@ -180,9 +180,10 @@
 
     <div class="auth-container">
       <%
-  
+
       List<String> errorMessages = (List<String>) request.getAttribute("error_message");
       String successMessage = (String) request.getAttribute("successMessage");
+      String errorString = (String) request.getAttribute("error_messages");
       %>
 
       <!-- Success Message -->
@@ -192,6 +193,12 @@
               <strong>Success!</strong> <%= successMessage %>
           </div>
       <% } %>
+      <% if (errorString != null) { %>
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>Error!</strong> <%= errorString %>
+        </div>
+    <% } %>
 
       <!-- Error Messages -->
       <% if (errorMessages != null && !errorMessages.isEmpty()) { %>
@@ -207,17 +214,32 @@
       <% } %>
 
       <ul class="nav nav-tabs justify-content-center mb-3" id="authTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">Sign In</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" type="button" role="tab">Sign Up</button>
-        </li>
-      </ul>
+
+  <li class="nav-item" role="presentation">
+    <button class="nav-link <%= !isSignup ? "active" : "" %>"
+            id="login-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#login"
+            type="button" role="tab">
+      Sign In
+    </button>
+  </li>
+
+  <li class="nav-item" role="presentation">
+    <button class="nav-link <%= isSignup ? "active" : "" %>"
+            id="signup-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#signup"
+            type="button" role="tab">
+      Sign Up
+    </button>
+  </li>
+
+</ul>
 
       <div class="tab-content" id="authTabsContent">
         <!-- LOGIN -->
-        <div class="tab-pane fade show active" id="login" role="tabpanel">
+        <div class="tab-pane fade <%= !isSignup ? "show active" : "" %>" id="login" role="tabpanel">
           <form id="loginForm" method="post" action="loginController.jsp" novalidate>
             <div class="mb-3 text-start">
               <label for="loginEmail" class="form-label">Email <span class="required">*</span></label>
@@ -234,7 +256,7 @@
         </div>
 
         <!-- SIGNUP -->
-        <div class="tab-pane fade" id="signup" role="tabpanel">
+    <div class="tab-pane fade <%= isSignup ? "show active" : "" %>" id="signup" role="tabpanel">
     <form id="signupForm" method="post" action="registerController.jsp" novalidate>
         
         <div class="mb-3 text-start">
@@ -331,7 +353,6 @@
     </form>
 </div>
             </div>
-          </form>
         </div>
       </div>
     </div>
@@ -358,7 +379,8 @@
       });
     });
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+ 
 
   <script>
     
