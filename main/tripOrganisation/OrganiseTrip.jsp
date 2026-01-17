@@ -47,12 +47,12 @@
 
       <label for="travelPurpose"> Travel Purpose:<span style="color: red">*</span></label>
       <select id="travelPurpose" name="purpose" required>
-      <option value="">-- Select purpose --</option>
-      <option value="Recreation">Recreation</option>
-      <option value="Adventure">Adventure</option>
-      <option value="Cultural">Cultural</option>
-      <option value="Business">Business</option>
-      <option value="Food & Wine">Food & Wine</option>
+      <option style=" color: black;">-- Select purpose --</option>
+      <option style=" color: black;"value="Recreation">Recreation</option>
+      <option style=" color: black;" value="Adventure">Adventure</option>
+      <option style=" color: black;" value="Cultural">Cultural</option>
+      <option style=" color: black;" value="Business">Business</option>
+      <option style=" color: black;" value="Food & Wine">Food & Wine</option>
     </select>
       
       <div style="display:flex; gap:20px; justify-content: space-between; margin-bottom: 10px;">

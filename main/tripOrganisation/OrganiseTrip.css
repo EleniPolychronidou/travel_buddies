@@ -73,7 +73,7 @@ h2 {
         transition: background 0.3s;
     }
 
-    select {
+  select {
     background: white; 
     color: black;
     border: 1px solid #ccc;
@@ -83,7 +83,7 @@ h2 {
 
 select:focus {
     outline: none;
-    color: white;
+    color: rgb(6, 6, 6);
 }
 .options {
   position: absolute;
@@ -94,10 +94,11 @@ select:focus {
   display: none;
   flex-direction: column;
   z-index: 10;
+  color: black;
 }
 
 .options div {
   padding: 10px;
-  transition: background 0.3s;
+  transition: background 0.1s;
 }
 

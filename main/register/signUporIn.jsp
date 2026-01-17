@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page import="java.util.List" %>
 <!doctype html>
 <html lang="el">
 <head>
@@ -164,28 +164,11 @@
 </head>
 <body>
 
-		<div class="container theme-showcase" role="main">			            
-            <div class="row">		
-				<div class="col-xs-12">
-<%
-					if (request.getAttribute("error_message") != null) {
-%>
-						<div class="alert alert-danger">
-							<%=(String)request.getAttribute("error_message") %>
-						</div><%
-					}
-%>	
+		
 
-<%
-					if (request.getAttribute("successMessage") != null) {
-%>
-						<div class="alert alert-success">
-							<%=(String)request.getAttribute("successMessage") %>
-						</div>
-<%
-					}
-%>
+    
 
+    
 
     <!--Είναι φτωχικό αλλά μου έφαγαν την ζωή και όλες τις δωρεάν προσπάθειες του τσατ αυτά τα κουμπιά-->
   <div class="container-wrapper">
@@ -196,6 +179,33 @@
     </div>
 
     <div class="auth-container">
+      <%
+  
+      List<String> errorMessages = (List<String>) request.getAttribute("error_message");
+      String successMessage = (String) request.getAttribute("successMessage");
+      %>
+
+      <!-- Success Message -->
+      <% if (successMessage != null) { %>
+          <div class="alert alert-success alert-dismissible fade show">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>Success!</strong> <%= successMessage %>
+          </div>
+      <% } %>
+
+      <!-- Error Messages -->
+      <% if (errorMessages != null && !errorMessages.isEmpty()) { %>
+          <div class="alert alert-danger alert-dismissible fade show">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>Please fix the following errors:</strong>
+              <ul style="text-align: left; margin-top: 10px; margin-bottom: 0;">
+                  <% for (String error : errorMessages) { %>
+                      <li><%= error %></li>
+                  <% } %>
+              </ul>
+          </div>
+      <% } %>
+
       <ul class="nav nav-tabs justify-content-center mb-3" id="authTabs" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">Sign In</button>
