@@ -2,8 +2,6 @@ package javaclasses;
 
 import java.sql.*;
 
-import javaclasses.Agency;
-
 public class AgencyDAO {
 
     // Μέθοδος σύνδεσης χρησιμοποιώντας την κλάση DB που παρείχες
@@ -18,23 +16,42 @@ public class AgencyDAO {
     /**
      * Εισαγωγή νέου Agency στη βάση
      */
-    public boolean insertAgency(Agency agency) {
-        boolean rowInserted = false;
+    public int insertAgency(Agency agency) {
+        int generatedId = -1;
+        String INSERT_AGENCY = "INSERT INTO agency (user_id, business_name, address, phone) VALUES (?, ?, ?, ?)";
 
-        // Χρησιμοποιούμε try-with-resources για αυτόματο κλείσιμο
-        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_AGENCY)) {
+    // ΠΡΟΣΟΧΗ: Το try ξεκινάει ΠΡΙΝ το getConnection()
+    try {
+        Connection connection = getConnection(); // Εδώ ήταν το πρόβλημα
 
-            preparedStatement.setInt(1, agency.getUserId());
-            preparedStatement.setString(2, agency.getBusinessName());
-            preparedStatement.setString(3, agency.getAddress());
-            preparedStatement.setString(4, agency.getPhone());
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_AGENCY, Statement.RETURN_GENERATED_KEYS)) {
 
-            rowInserted = preparedStatement.executeUpdate() > 0;
+                preparedStatement.setInt(1, agency.getUserId());
+                preparedStatement.setString(2, agency.getBusinessName());
+                preparedStatement.setString(3, agency.getAddress());
+                preparedStatement.setString(4, agency.getPhone());
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows > 0) {
+                try (ResultSet rs = preparedStatement.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        generatedId = rs.getInt(1);
+                        agency.setAgencyId(generatedId);
+                    }
+                }
+            }
+        } finally {
+            if (connection != null) {
+                connection.close();
+            }
         }
-        return rowInserted;
+
+    } catch (Exception e) { // Πιάνει το Exception του getConnection()
+        e.printStackTrace();
+    }
+
+        return generatedId;
     }
 
     /**

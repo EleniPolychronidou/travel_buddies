@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Trip Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
     <style>
         body { font-family: Arial, sans-serif; background-color: #f3f3f3; margin: 0; padding: 20px; }
         .details-card { max-width: 500px; margin: 0 auto; background: white; border-radius: 12px; padding: 20px; box-shadow: 0px 4px 10px rgba(0,0,0,0.15); }
@@ -24,6 +25,23 @@
 <header>
     <jsp:include page="../home/header.jsp" />
 </header>
+<%
+  if (request.getAttribute("error_message") != null) {
+%>
+    <div class="alert alert-danger">
+      <%= (String) request.getAttribute("error_message") %>
+    </div>
+<%
+  }
+
+  if (request.getAttribute("successMessage") != null) {
+%>
+    <div class="alert alert-success">
+      <%= (String) request.getAttribute("successMessage") %>
+    </div>
+<%
+  }
+%>
 
 <%
     String tripIdStr = request.getParameter("tripId");
@@ -66,6 +84,26 @@
         <input type="hidden" name="tripId" value="<%= trip.getTripId() %>">
         <button class="join-btn" type="submit">Join Trip</button>
     </form>
+    <%
+    String successMessage = (String) request.getAttribute("successMessage");
+%>
+
+<% if (successMessage != null) { %>
+    <div style="margin-top:12px;">
+        <a href="../Message/Message.jsp?tripId=<%= trip.getTripId() %>"
+           style="
+               display:inline-block;
+               padding:10px 18px;
+               background:#546D79;
+               color:white;
+               border-radius:8px;
+               text-decoration:none;
+               font-weight:600;
+           ">
+            💬 Open Chat
+        </a>
+    </div>
+    <% } %>
 
     <button class="back-btn" onclick="window.location.href='findaTrip.jsp'"">← Back</button>
 </div>

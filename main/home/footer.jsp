@@ -14,11 +14,6 @@
         <p>76 Patission Str., 104.34 ATHENS, GREECE</p>
         <p>Email: support@travelbuddy.com</p>
       </div>
-      <nav>
-        <a href="/faq">FAQ</a> | <a href="/support">Support</a> |
-        <a href="/groups">Find Groups</a> |
-        <a href="/trips">Upcoming Trips</a>
-      </nav>
     </footer>
   </body>
 </html>
