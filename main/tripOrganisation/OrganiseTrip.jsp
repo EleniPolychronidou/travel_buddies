@@ -7,6 +7,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="OrganiseTrip.css" />
     <link rel="stylesheet" href="../styleforcss/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -25,13 +26,13 @@
   </header>
     </header>
    <% if (request.getAttribute("success_message") != null) { %>
-    <div class="success-message">
+    <div class="alert alert-success">
         <%= request.getAttribute("success_message") %>
     </div>
 <% } %>
 
 <% if (request.getAttribute("error_message") != null) { %>
-    <div class="error-message">
+    <div class="alert alert-danger">
         <%= request.getAttribute("error_message") %>
     </div>
 <% } %>

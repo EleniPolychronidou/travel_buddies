@@ -25,30 +25,58 @@ User user = (User) session.getAttribute("authenticated_user");
      request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
       return;
  }
-int agencyId = agencyIdObj.intValue();
+    int agencyId = agencyIdObj.intValue();
 
-String title = request.getParameter("title");
-String destination = request.getParameter("destination");
-String purpose = request.getParameter("purpose");
-String startStr = request.getParameter("start");
-String endStr = request.getParameter("end");
-String description = request.getParameter("description");
-String avgCostStr = request.getParameter("avgCost");
+    String title = request.getParameter("title");
+    String destination = request.getParameter("destination");
+    String purpose = request.getParameter("purpose");
+    String startStr = request.getParameter("start");
+    String endStr = request.getParameter("end");
+    String description = request.getParameter("description");
+    String avgCostStr = request.getParameter("avgCost");
+    double avgCost = 0.0;
 
-Date startDate = null;
-Date endDate = null;
+    if (title == null || title.isEmpty()) {
+        request.setAttribute("error_message", "Title cannot be empty");
+        request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
+        return;}
+        if (startStr == null || startStr.isEmpty()) {
+        request.setAttribute("error_message", "Start date cannot be empty");
+        request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
+        return;
+    }
+    if (endStr == null || endStr.isEmpty()) {
+        request.setAttribute("error_message", "End date cannot be empty");
+        request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
+        return;
+    }
+    if (avgCostStr == null || avgCostStr.isEmpty()) {
+        request.setAttribute("error_message", "Average cost cannot be empty");
+        request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
+        return;
+    }
+    if (purpose == null || purpose.isEmpty()) {
+        request.setAttribute("error_message", "Purpose cannot be empty");
+        request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
+        return;
+    }
+    if (description == null || description.isEmpty()) {
+        request.setAttribute("error_message", "Description cannot be empty");
+        request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
+        return;
+    }
 
-if (startStr != null && !startStr.isEmpty()) {
-    startDate = Date.valueOf(startStr);
-}
-if (endStr != null && !endStr.isEmpty()) {
-    endDate = Date.valueOf(endStr);
-}
 
-double avgCost = 0.0;
-if (avgCostStr != null && !avgCostStr.isEmpty()) {
+    Date startDate = Date.valueOf(startStr);
+    Date endDate = Date.valueOf(endStr);
     avgCost = Double.parseDouble(avgCostStr);
-}
+    
+
+    if (startDate.after(endDate)) {
+        request.setAttribute("error_message", "Start date cannot be after end date");
+        request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
+        return;
+    }
 
 
 
