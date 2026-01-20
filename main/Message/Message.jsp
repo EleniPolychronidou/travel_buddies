@@ -16,18 +16,67 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
 
   <style>
-    body { background:#f3f3f3; }
-    .chat-box { max-width: 800px; margin: 20px auto; background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 10px rgba(0,0,0,.12); }
-    .messages { max-height: 450px; overflow-y: auto; padding: 10px; background:#fafafa; border-radius:10px; border:1px solid #eee; margin-bottom: 15px; }
-    .msg { padding:10px 12px; margin:8px 0; border-radius:12px; display:inline-block; max-width:75%; word-wrap: break-word; }
-    .mine { background:#546D79; color:#fff; float:right; clear:both; }
-    .theirs { background:#e9ecef; color:#333; float:left; clear:both; }
-    .meta { font-size: 11px; opacity: .7; margin-top: 4px; }
-    .clearfix { clear: both; }
-  </style>
+    <style>
+    body { 
+        background:#f3f3f3; 
+        margin: 0;
+        padding: 0;
+    }
+    .chat-box { 
+        width: 90%;
+        max-width: 1400px;
+        margin: 20px auto; 
+        background:#fff; 
+        border-radius:12px; 
+        padding:20px; 
+        box-shadow:0 4px 10px rgba(0,0,0,.12); 
+    }
+    .messages { 
+        max-height: 450px; 
+        overflow-y: auto; 
+        padding: 10px; 
+        background:#fafafa; 
+        border-radius:10px; 
+        border:1px solid #eee; 
+        margin-bottom: 15px; 
+    }
+    .msg { 
+        padding:10px 12px; 
+        margin:8px 0; 
+        border-radius:12px; 
+        display:inline-block; 
+        max-width:60%;
+        word-wrap: break-word; 
+    }
+    .mine { 
+        background:#546D79; 
+        color:#fff; 
+        float:right; 
+        clear:both; 
+    }
+    .theirs { 
+        background:#e9ecef; 
+        color:#333; 
+        float:left; 
+        clear:both; 
+    }
+    .meta { 
+        font-size: 11px; 
+        opacity: .7; 
+        margin-top: 4px; 
+    }
+    .clearfix { 
+        clear: both; 
+    }
+
+
+</style>
 </head>
 <body>
 
+<header>
+        <jsp:include page="../home/header.jsp" />
+  </header>
 <%
 try {
     User user = (User) session.getAttribute("authenticated_user");
@@ -191,6 +240,10 @@ document.getElementById('messageForm').addEventListener('submit', function(e) {
 <%
 }
 %>
+<footer>
+        <jsp:include page="../home/footer.jsp" />
+      
+    </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
