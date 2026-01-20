@@ -100,7 +100,7 @@
                text-decoration:none;
                font-weight:600;
            ">
-            💬 Open Chat
+            Open Chat
         </a>
     </div>
     <% } %>
