@@ -76,7 +76,14 @@ User user = (User) session.getAttribute("authenticated_user");
         request.setAttribute("error_message", "Start date cannot be after end date");
         request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
         return;
+    
     }
+    Date today = new Date(System.currentTimeMillis());
+    if (startDate.before(today)) {
+    request.setAttribute("error_message", "Start date must be today or in the future");
+    request.getRequestDispatcher("../tripOrganisation/OrganiseTrip.jsp").forward(request, response);
+    return;
+}
 
 
 

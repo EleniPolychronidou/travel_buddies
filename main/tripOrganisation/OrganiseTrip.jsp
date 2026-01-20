@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
 
-  <title>Organise A Trip </title>
+  <title class="title">Organise A Trip </title>
   </head>
 
   <body>
@@ -74,8 +74,8 @@
 
       <label for="tripDescription">Trip description:</label>
       <textarea id="tripDescription" name="description" rows="4"></textarea>
-      <button type="reset">Reset</button>
-      <button type="submit">Publish Trip</button>
+      <button  class= button type="reset">Reset</button>
+      <button class= button type="submit">Publish Trip</button>
 
 
 

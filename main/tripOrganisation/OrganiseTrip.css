@@ -27,7 +27,13 @@ form textarea {
 }
 
       
-  
+ title {
+      text-align: center;
+      font-size: 20;
+      margin-bottom: 10px;
+      color: #546D79;
+    }
+
 h2 {
       text-align: center;
       font-size: 15;
@@ -65,7 +71,8 @@ h2 {
     button {
         margin-top: 20px;
         padding: 10px 20px;
-        background-color: #A4B8CC;
+        background-color: #3b5563;
+        color: white;
         border: none;
         border-radius: 5px;
         font-size: 16px;
