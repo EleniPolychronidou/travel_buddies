@@ -105,7 +105,7 @@ try {
     ms.addMember(newTripId, organiserUserId, true);
 
 
-    request.setAttribute("success_message", "Trip published successfully! Trip ID: " + newTripId);
+    request.setAttribute("success_message", "Trip published successfully!");
     request.getRequestDispatcher("OrganiseTrip.jsp").forward(request, response);
     return;
 
