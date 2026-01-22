@@ -1,4 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page import="javaclasses.Trip" %>
+<%@ page import="java.util.List" %>
+<%@ page import="javaclasses.TripService" %>
+<%@ page import="javaclasses.Agency" %>
+<%@ page import="javaclasses.AgencyDAO" %>
+<%@ page import= "javaclasses.Traveler" %>
+<%@ page import= "javaclasses.TravelerDAO" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.sql.Date" %>
 
 
 <!DOCTYPE html>
@@ -114,19 +123,54 @@
       </div>
     </section>
 
-    <!-- Quick Stats -->
+
     <section class="quick-stats">
       <div class="stat">
-        <span class="stat-number">1,258</span>
-        <span class="stat-label">Trips Available</span>
+        <% TripService tripService = new TripService();
+            List<Trip> tripList = tripService.getAllTrips();
+            LocalDate today = LocalDate.now();
+            List<Trip> trips =new java.util.ArrayList<Trip>();
+            if (tripList != null) {  
+              for (Trip trip : tripList) {
+                  Date sd = trip.getStartDate();
+                  if (sd == null) continue;
+                  LocalDate tripStartDate = sd.toLocalDate();
+                    if (tripStartDate.isAfter(today)) {
+                        trips.add(trip);
+                    }
+                  }
+                }
+              
+          int tripCount = 0;
+      if (trips != null && !trips.isEmpty()) {
+          tripCount = trips.size(); }
+        %>
+        <span class="stat-number"><%= tripCount %></span>
+        <span class="stat-label" style="white-space: nowrap;">Trips Available  </span>
       </div>
       <div class="stat">
-        <span class="stat-number">324</span>
-        <span class="stat-label">Active Travelers</span>
+        <% 
+          TravelerDAO travelerDao = new TravelerDAO();
+          List<Traveler> travelerList = travelerDao.selectAllTravelers();
+          int travelerCount = 0;
+          if (travelerList != null) {
+              travelerCount = travelerList.size();
+          } %>
+        
+        <span class="stat-number"><%= travelerCount %></span>
+        <span class="stat-label" style="white-space: nowrap;">Active Travelers  </span>
       </div>
       <div class="stat">
-        <span class="stat-number">47</span>
-        <span class="stat-label">Countries</span>
+        <% 
+          AgencyDAO agencyDao = new AgencyDAO();
+          List<Agency> agencyList = agencyDao.getAllAgencies();
+          int agencyCount = 0;
+          if (agencyList != null) {
+              agencyCount = agencyList.size();
+          } %>
+        
+        <span class="stat-number"><%= agencyCount %></span>
+        <span class="stat-label"  style="white-space: nowrap;">Active agencies  </span>
       </div>
     </section>
 

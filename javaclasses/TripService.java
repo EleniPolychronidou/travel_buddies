@@ -256,6 +256,33 @@ public class TripService {
     public int getMembersCount(int tripId) throws Exception {
         return memberService.countMembers(tripId);
     }
+    public List<Trip> getAllTrips() throws Exception {
+        List<Trip> trips = new ArrayList<>();
+        try {
+            DB db = new DB();
+            Connection con = db.getConnection();
+            String sql = "SELECT t.*, u.username FROM trip t JOIN agency a ON t.creator_id = a.agency_id JOIN user u ON a.user_id = u.user_id";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs =  stmt.executeQuery();
+            while (rs.next()) {
+                Trip trip = new Trip(
+                        rs.getInt("trip_id"),
+                        rs.getInt("creator_id"),
+                        rs.getString("title"),
+                        rs.getString("destination"),
+                        rs.getDate("start_date"),
+                        rs.getDate("end_date"),
+                        rs.getString("purpose"),
+                        rs.getString("description"),
+                        rs.getDouble("avg_cost"),
+                        rs.getString("username"));
+                trips.add(trip);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return trips;
+    }
 
 
 }

@@ -1,4 +1,6 @@
 package javaclasses;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.sql.*;
 
@@ -78,5 +80,28 @@ public class AgencyDAO {
             e.printStackTrace();
         }
         return agency;
+    }
+    public List<Agency> getAllAgencies() {
+        List<Agency> agencies = new ArrayList<>();
+        String SELECT_ALL_AGENCIES = "SELECT * FROM agency";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_AGENCIES);
+             ResultSet rs = preparedStatement.executeQuery()) {
+
+            while (rs.next()) {
+                Agency agency = new Agency(
+                        rs.getInt("agency_id"),
+                        rs.getInt("user_id"),
+                        rs.getString("business_name"),
+                        rs.getString("address"),
+                        rs.getString("phone")
+                );
+                agencies.add(agency);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return agencies;
     }
 }

@@ -202,7 +202,7 @@ boolean isSignup = (showSignup != null && showSignup);
 
       <!-- Error Messages -->
       <% if (errorMessages != null && !errorMessages.isEmpty()) { %>
-          <div class="alert alert-danger alert-dismissible fade show">
+          <div  class="alert alert-danger alert-dismissible fade show">
               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               <strong>Please fix the following errors:</strong>
               <ul style="text-align: left; margin-top: 10px; margin-bottom: 0;">
